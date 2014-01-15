@@ -12,6 +12,8 @@ Bundle 'gmarik/vundle'
 " original repos on github
 Bundle 'scrooloose/nerdtree'
 Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'majutsushi/tagbar'
+Bundle 'godlygeek/tabular'
 Bundle 'tomtom/tlib_vim'
 Bundle 'garbas/vim-snipmate'
 Bundle 'kien/ctrlp.vim'
@@ -29,6 +31,7 @@ Bundle 'eraserhd/vim-ios'
 Bundle 'wincent/Command-T'
 Bundle 'juvenn/mustache.vim'
 Bundle 'tpope/vim-git'
+Bundle 'mattn/zencoding-vim'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'skammer/vim-css-color'
 Bundle 'helino/vim-json'
@@ -37,6 +40,7 @@ Bundle 'othree/eregex.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'maksimr/vim-jsbeautify'
 Bundle 'einars/js-beautify'
+Bundle 'nathanaelkane/vim-indent-guides'
 
 " Bundle 'airblade/vim-gitgutter.git'
 " vim-scripts repos
@@ -56,7 +60,7 @@ Bundle 'L9'
 " We reset the vimrc augroup. Autocommands are added to this group throughout
 " the file
 augroup vimrc
-	autocmd!
+  autocmd!
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -94,6 +98,8 @@ set wildmode=longest,list,full
 set wildmenu            " completion with menu
 " This changes the default display of tab and CR chars in list mode
 set listchars=tab:▸\ ,eol:¬
+set list
+
 
 " The "longest" option makes completion insert the longest prefix of all
 " the possible matches; see :h completeopt
@@ -114,6 +120,7 @@ set smarttab            " smart tab handling for indenting
 set magic               " change the way backslashes are used in search patterns
 set bs=indent,eol,start " Allow backspacing over everything in insert mode
 set nobackup            " no backup~ files.
+set number
 
 set tabstop=2           " number of spaces a tab counts for
 set shiftwidth=2        " spaces for autoindents
@@ -179,8 +186,8 @@ autocmd vimrc GUIEnter * set visualbell t_vb=
 
 " Switch syntax highlighting on, when the terminal has colors
 if &t_Co > 2 || has("gui_running")
-	syntax on
-	set antialias
+  syntax on
+  set antialias
 endif
 
 " none of these should be word dividers, so make them not be
@@ -207,11 +214,11 @@ set colorcolumn=+1
 set formatoptions=tcroqnj
 
 if v:version >= 704
-	" The new Vim regex engine is currently slooooow as hell which makes syntax
-	" highlighting slow, which introduces typing latency.
-	" Consider removing this in the future when the new regex engine becomes
-	" faster.
-	set regexpengine=1
+  " The new Vim regex engine is currently slooooow as hell which makes syntax
+  " highlighting slow, which introduces typing latency.
+  " Consider removing this in the future when the new regex engine becomes
+  " faster.
+  set regexpengine=1
 endif
 
 " The alt (option) key on macs now behaves like the 'meta' key. This means we
@@ -219,30 +226,27 @@ endif
 " be turned off when necessary (for instance, when we want to input special
 " characters) with :set nomacmeta.
 if has("gui_macvim")
-	set macmeta
-	for i in range(1, 9)
-		exec "nnoremap <D-".i."> ".i."gt"
-	endfor
+  set macmeta
+  for i in range(1, 9)
+    exec "nnoremap <D-".i."> ".i."gt"
+  endfor
 endif
 
 if has('unnamedplus')
-	" By default, Vim will not use the system clipboard when yanking/pasting to
-	" the default register. This option makes Vim use the system default
-	" clipboard.
-	" Note that on X11, there are _two_ system clipboards: the "standard" one, and
-	" the selection/mouse-middle-click one. Vim sees the standard one as register
-	" '+' (and this option makes Vim use it by default) and the selection one as
-	" '*'.
-	" See :h 'clipboard' for details.
-	set clipboard=unnamedplus,unnamed
+  " By default, Vim will not use the system clipboard when yanking/pasting to
+  " the default register. This option makes Vim use the system default
+  " clipboard.
+  " Note that on X11, there are _two_ system clipboards: the "standard" one, and
+  " the selection/mouse-middle-click one. Vim sees the standard one as register
+  " '+' (and this option makes Vim use it by default) and the selection one as
+  " '*'.
+  " See :h 'clipboard' for details.
+  set clipboard=unnamedplus,unnamed
 else
-	" Vim now also uses the selection system clipboard for default yank/paste.
-	set clipboard+=unnamed
+  " Vim now also uses the selection system clipboard for default yank/paste.
+  set clipboard+=unnamed
 endif
 
-
-" UltiSnips is missing a setf trigger for snippets on BufEnter
-autocmd vimrc BufEnter *.snippets setf snippets
 
 " In UltiSnips snippet files, we want actual tabs instead of spaces for indents.
 " US will use those tabs and convert them to spaces if expandtab is set when the
@@ -251,9 +255,9 @@ autocmd vimrc FileType snippets set noexpandtab
 
 " The stupid javascript filetype plugin overrides our settings!
 autocmd vimrc FileType javascript
-			\ set tabstop=4 |
-			\ set shiftwidth=4 |
-			\ set softtabstop=4
+      \ set tabstop=4 |
+      \ set shiftwidth=4 |
+      \ set softtabstop=4
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           More involved tweaks                          "
@@ -261,64 +265,68 @@ autocmd vimrc FileType javascript
 
 " Unicode support (taken from http://vim.wikia.com/wiki/Working_with_Unicode)
 if has("multi_byte")
-	if &termencoding == ""
-		let &termencoding = &encoding
-	endif
-	set encoding=utf-8
-	setglobal fileencoding=utf-8
-	set fileencodings=ucs-bom,utf-8,latin1
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8
+  setglobal fileencoding=utf-8
+  set fileencodings=ucs-bom,utf-8,latin1
 endif
 
 augroup vimrc
-	" Automatically delete trailing DOS-returns and whitespace on file open and
-	" write.
-	autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
+  " Automatically delete trailing DOS-returns and whitespace on file open and
+  " write.
+  autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
 augroup END
 
 " this maximizes the gvim window on startup
 if has("gui_win32")
-	" this maximizes on windows
-	au vimrc GUIEnter * simalt ~x
+  " this maximizes on windows
+  au vimrc GUIEnter * simalt ~x
 else
-	" We never maximize in macvim. We rely on it remembering the window size
-	" itself.
-	if !has("gui_macvim")
-		au vimrc GUIEnter * set lines=999 columns=999
-	endif
+  " We never maximize in macvim. We rely on it remembering the window size
+  " itself.
+  if !has("gui_macvim")
+    au vimrc GUIEnter * set lines=999 columns=999
+  endif
+endif
+
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
 " Sets a font for the GUI
 if has("gui_gtk2")
-	set guifont=Inconsolata\ For\ Powerline\ 17
+  set guifont=Inconsolata\ for\ Powerline\ 17
 elseif has("gui_macvim")
-	" My Mac has a fairly high DPI so the font needs to be bigger
-	set guifont=Inconsolata\ For\ Powerline:h17
+  " My Mac has a fairly high DPI so the font needs to be bigger
+  set guifont=Inconsolata\ for\ Powerline:h17
 elseif has("gui_win32")
-	set guifont=Inconsolata\ For\ Powerline:h17
+  set guifont=Inconsolata\ for\ Powerline:h17
 end
 
 " Sometimes, $MYVIMRC does not get set even though the vimrc is sourced
 " properly. So far, I've only seen this on Linux machines on rare occasions.
 if has("unix") && strlen($MYVIMRC) < 1
-	let $MYVIMRC=$HOME . '/.vimrc'
+  let $MYVIMRC=$HOME . '/.vimrc'
 endif
 
 " Highlight Class and Function names
 function! s:HighlightFunctionsAndClasses()
-	syn match cCustomFunc      "\w\+\s*\((\)\@="
-	syn match cCustomClass     "\w\+\s*\(::\)\@="
+  syn match cCustomFunc      "\w\+\s*\((\)\@="
+  syn match cCustomClass     "\w\+\s*\(::\)\@="
 
-	hi def link cCustomFunc      Function
-	hi def link cCustomClass     Function
+  hi def link cCustomFunc      Function
+  hi def link cCustomClass     Function
 endfunction
 
 " Highlight Class and Function names, D specific
 function! s:HighlightDFunctionsAndClasses()
-	syn match cCustomDFunc     "\w\+\s*\(!.\{-}(\)\@="
-	syn match cCustomDFuncUFCS ".\w\+\s*\(!.\{-}\)\@="
+  syn match cCustomDFunc     "\w\+\s*\(!.\{-}(\)\@="
+  syn match cCustomDFuncUFCS ".\w\+\s*\(!.\{-}\)\@="
 
-	hi def link cCustomDFunc     Function
-	hi def link cCustomDFuncUFCS Function
+  hi def link cCustomDFunc     Function
+  hi def link cCustomDFuncUFCS Function
 endfunction
 
 " TODO: this should:
@@ -330,22 +338,22 @@ au vimrc Syntax d call s:HighlightDFunctionsAndClasses()
 
 " TODO: split this into separate plugin
 function! VisualSearch(direction) range
-	let l:saved_reg = @"
-	execute "normal! vgvy"
+  let l:saved_reg = @"
+  execute "normal! vgvy"
 
-	let l:pattern = escape(@", '\\/.*$^~[]')
-	let l:pattern = substitute(l:pattern, "\n$", "", "")
+  let l:pattern = escape(@", '\\/.*$^~[]')
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
 
-	if a:direction == 'b'
-		execute "normal ?" . l:pattern . "^M"
-	elseif a:direction == 'gv'
-		execute "Ack " . l:pattern . ' %'
-	elseif a:direction == 'f'
-		execute "normal /" . l:pattern . "^M"
-	endif
+  if a:direction == 'b'
+    execute "normal ?" . l:pattern . "^M"
+  elseif a:direction == 'gv'
+    execute "Ack " . l:pattern . ' %'
+  elseif a:direction == 'f'
+    execute "normal /" . l:pattern . "^M"
+  endif
 
-	let @/ = l:pattern
-	let @" = l:saved_reg
+  let @/ = l:pattern
+  let @" = l:saved_reg
 endfunction
 
 "Basically you press * or # to search for the current selection
@@ -364,7 +372,54 @@ au vimrc BufReadCmd *.epub call zip#Browse( expand( "<amatch>" ) )
 
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                tagbar                                   "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:tagbar_left = 1
+let g:tagbar_sort = 0
+if has("gui_macvim")
+  let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+endif
+
+nnoremap <F4> :TagbarToggle<cr><c-w>=
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                session                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" you also need to run :SaveSession once to create the default.vim session that
+" will then be autoloaded/saved from then on
+
+let g:session_autoload        = 'yes'
+let g:session_autosave        = 'yes'
+let g:session_default_to_last = 'yes'
+let g:session_directory       = '~/tmp/vim/sessions'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                tabular                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" looks at the current line and the lines above and below it and aligns all the
+" equals signs; useful for when we have several lines of declarations
+nnoremap <Leader>a= :Tabularize /=<CR>
+vnoremap <Leader>a= :Tabularize /=<CR>
+nnoremap <Leader>a/ :Tabularize /\/\//l2c1l0<CR>
+vnoremap <Leader>a/ :Tabularize /\/\//l2c1l0<CR>
+nnoremap <Leader>a, :Tabularize /,/l0r1<CR>
+vnoremap <Leader>a, :Tabularize /,/l0r1<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              vim-css-color                              "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:cssColorVimDoNotMessMyUpdatetime = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              zencoding-vim                              "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:user_zen_leader_key = '<c-b>'
+let g:user_zen_settings = {
+      \  'indentation' : '  '
+      \}
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_always_populate_loc_list = 1
@@ -373,6 +428,8 @@ let g:syntastic_c_compiler_options = ' -std=c99 -I~/include -I/usr/local/include
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++1y -I~/include -I/usr/local/include'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_color_change_percent = 7
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'tomorrow'
 map <s-f> :call JsBeautify()<cr>
