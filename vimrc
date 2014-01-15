@@ -1,4 +1,5 @@
 set nocompatible               " be iMproved
+scriptencoding utf-8
 set shell=/bin/bash
 filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
@@ -10,17 +11,15 @@ Bundle 'gmarik/vundle'
 " My Bundles here:
 "
 " original repos on github
+Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'scrooloose/nerdtree'
-Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'majutsushi/tagbar'
 Bundle 'godlygeek/tabular'
 Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
-Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-fugitive'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'bling/vim-airline'
-Bundle 'tpope/vim-fugitive'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'Valloric/vim-valloric-colorscheme'
 Bundle 'scrooloose/syntastic'
@@ -40,7 +39,6 @@ Bundle 'othree/eregex.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'maksimr/vim-jsbeautify'
 Bundle 'einars/js-beautify'
-Bundle 'nathanaelkane/vim-indent-guides'
 
 " Bundle 'airblade/vim-gitgutter.git'
 " vim-scripts repos
@@ -90,6 +88,7 @@ set title               " show file in titlebar
 set undofile            " stores undo state even when files are closed (in undodir)
 set cursorline          " highlights the current line
 set winaltkeys=no       " turns of the Alt key bindings to the gui menu
+set number
 
 " When you type the first tab, it will complete as much as possible, the second
 " tab hit will provide a list, the third and subsequent tabs will cycle through
@@ -97,9 +96,7 @@ set winaltkeys=no       " turns of the Alt key bindings to the gui menu
 set wildmode=longest,list,full
 set wildmenu            " completion with menu
 " This changes the default display of tab and CR chars in list mode
-set listchars=tab:▸\ ,eol:¬
-set list
-
+set list listchars=tab:▸\ ,eol:¬,trail:·,extends:#,nbsp:·
 
 " The "longest" option makes completion insert the longest prefix of all
 " the possible matches; see :h completeopt
@@ -120,7 +117,6 @@ set smarttab            " smart tab handling for indenting
 set magic               " change the way backslashes are used in search patterns
 set bs=indent,eol,start " Allow backspacing over everything in insert mode
 set nobackup            " no backup~ files.
-set number
 
 set tabstop=2           " number of spaces a tab counts for
 set shiftwidth=2        " spaces for autoindents
