@@ -1,7 +1,7 @@
 set nocompatible               " be iMproved
 scriptencoding utf-8
 set shell=/bin/bash
-filetype off                   " required!
+filetype off  " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 " let Vundle manage Vundle
@@ -21,7 +21,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'bling/vim-airline'
 Bundle 'Valloric/YouCompleteMe'
-Bundle 'Valloric/vim-valloric-colorscheme'
 Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -39,6 +38,8 @@ Bundle 'othree/eregex.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'maksimr/vim-jsbeautify'
 Bundle 'einars/js-beautify'
+Bundle 'dart-lang/dart-vim-plugin'
+Bundle 'nanotech/jellybeans.vim'
 
 " Bundle 'airblade/vim-gitgutter.git'
 " vim-scripts repos
@@ -76,7 +77,7 @@ filetype plugin indent on
 " TODO: transfer all our custom mapping to our vim_shortcuts file
 
 " DISPLAY SETTINGS
-colorscheme valloric    " sets the colorscheme
+colorscheme jellybeans    " sets the colorscheme
 set background=dark     " enable for dark terminals
 set scrolloff=2         " 2 lines above/below cursor when scrolling
 set showmatch           " show matching bracket (briefly jump)
@@ -251,9 +252,9 @@ autocmd vimrc FileType snippets set noexpandtab
 
 " The stupid javascript filetype plugin overrides our settings!
 autocmd vimrc FileType javascript
-      \ set tabstop=4 |
-      \ set shiftwidth=4 |
-      \ set softtabstop=4
+      \ set tabstop=2 |
+      \ set shiftwidth=2 |
+      \ set softtabstop=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           More involved tweaks                          "
