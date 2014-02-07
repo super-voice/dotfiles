@@ -36,10 +36,12 @@ Bundle 'helino/vim-json'
 Bundle 'othree/html5.vim'
 Bundle 'othree/eregex.vim'
 Bundle 'pangloss/vim-javascript'
+Bundle 'nanotech/jellybeans.vim'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'rhysd/vim-clang-format'
 Bundle 'maksimr/vim-jsbeautify'
 Bundle 'einars/js-beautify'
-Bundle 'dart-lang/dart-vim-plugin'
-Bundle 'nanotech/jellybeans.vim'
+Bundle 'JuliaLang/julia-vim'
 
 " Bundle 'airblade/vim-gitgutter.git'
 " vim-scripts repos
@@ -89,7 +91,7 @@ set title               " show file in titlebar
 set undofile            " stores undo state even when files are closed (in undodir)
 set cursorline          " highlights the current line
 set winaltkeys=no       " turns of the Alt key bindings to the gui menu
-set number
+" set number
 
 " When you type the first tab, it will complete as much as possible, the second
 " tab hit will provide a list, the third and subsequent tabs will cycle through
@@ -429,10 +431,11 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 7
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'tomorrow'
-map <s-f> :call JsBeautify()<cr>
-autocmd FileType javascript noremap <buffer>  <s-f> :call JsBeautify()<cr>
-autocmd FileType html noremap <buffer> <s-f> :call HtmlBeautify()<cr>
-autocmd FileType css noremap <buffer> <s-f> :call CSSBeautify()<cr>
+autocmd FileType javascript noremap <buffer><Leader>cf :call JsBeautify()<cr>
+autocmd FileType html noremap <buffer><Leader>cf :call HtmlBeautify()<cr>
+autocmd FileType css noremap <buffer><Leader>cf :call CSSBeautify()<cr>
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf ><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 let g:eregex_default_enable = 0
 " Toggles '/' to mean eregex search or normal Vim search
 nnoremap <leader>/ :call eregex#toggle()<CR>
