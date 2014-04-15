@@ -37,11 +37,11 @@ Bundle 'othree/html5.vim'
 Bundle 'othree/eregex.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'nanotech/jellybeans.vim'
-Bundle 'plasticboy/vim-markdown'
 Bundle 'rhysd/vim-clang-format'
 Bundle 'maksimr/vim-jsbeautify'
 Bundle 'einars/js-beautify'
 Bundle 'JuliaLang/julia-vim'
+Bundle 'reedes/vim-colors-pencil'
 
 " Bundle 'airblade/vim-gitgutter.git'
 " vim-scripts repos
@@ -107,8 +107,8 @@ set completeopt=menu,menuone,longest
 set switchbuf=useopen,usetab
 
 " EDITOR SETTINGS
-set ignorecase          " case insensitive searching
-set smartcase           " but become case sensitive if you type uppercase characters
+"set ignorecase          " case insensitive searching
+"set smartcase           " but become case sensitive if you type uppercase characters
 " this can cause problems with other filetypes
 " see comment on this SO question http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim/234578#234578
 "set smartindent         " smart auto indenting
@@ -296,12 +296,12 @@ endif
 
 " Sets a font for the GUI
 if has("gui_gtk2")
-  set guifont=Inconsolata\ for\ Powerline\ 17
+  set guifont=Consolas\ 17
 elseif has("gui_macvim")
   " My Mac has a fairly high DPI so the font needs to be bigger
-  set guifont=Inconsolata\ for\ Powerline:h17
+  set guifont=Monaco:h12
 elseif has("gui_win32")
-  set guifont=Inconsolata\ for\ Powerline:h17
+  set guifont=Consolas:h17
 end
 
 " Sometimes, $MYVIMRC does not get set even though the vimrc is sourced
@@ -377,6 +377,7 @@ au vimrc BufReadCmd *.epub call zip#Browse( expand( "<amatch>" ) )
 
 let g:tagbar_left = 1
 let g:tagbar_sort = 0
+let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 if has("gui_macvim")
   let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 endif
@@ -423,13 +424,17 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_c_compiler = 'clang'
-let g:syntastic_c_compiler_options = ' -std=c99 -I~/include -I/usr/local/include'
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++1y -I~/include -I/usr/local/include'
+let g:syntastic_c_compiler_options = ' -I~/include -I/usr/local/include'
+let g:syntastic_cpp_compiler = 'clang++ -std=c++1y'
+let g:syntastic_cpp_compiler_options = ' -I~/include -I/usr/local/include -I/usr/include'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:clang_format#command = 'clang-format-3.4'
+let g:clang_format#code_style = 'llvm'
+let g:clang_format#style_options = {
+            \ "Standard" : "C++11" }
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 7
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_theme = 'tomorrow'
 autocmd FileType javascript noremap <buffer><Leader>cf :call JsBeautify()<cr>
 autocmd FileType html noremap <buffer><Leader>cf :call HtmlBeautify()<cr>

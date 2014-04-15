@@ -3,7 +3,7 @@ set fish_path $HOME/.oh-my-fish
 set fish_greeting "Welcome back"
 
 # Theme
-set fish_theme coffeeandcode
+set fish_theme numist
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-fish/plugins/*)
 # Custom plugins may be added to ~/.oh-my-fish/custom/plugins/
@@ -15,16 +15,18 @@ set fish_plugins rbenv node python rake
 
 # Load oh-my-fish configuration.
 . $fish_path/oh-my-fish.fish
-set -x PATH $HOME/bin /usr/local/bin /usr/local/sbin/ $PATH $HOME/depot_tools
-set -x MANPATH $HOME/share/man $MANPATH
+set -x PATH $HOME/bin /usr/local/bin /usr/local/sbin $PATH $HOME/depot_tools
 set LESSPIPE /usr/local/bin/src-hilite-lesspipe.sh
 set -x LESS '-R'
-set -x GOPATH $HOME/.local/go
-set -x PATH $GOPATH/bin $PATH
-#set -x EDITOR /usr/local/bin/vim
+set -x EDITOR /usr/local/bin/vim
 set -x CC clang
-set -x CXX clang++
-set -x CFLAGS "-Wall -std=c99 -I$HOME/include -I/usr/local/include -I/usr/include"
-set -x CXXFLAGS "-Wall -Wno-c++98-compat -std=c++1y -I$HOME/include -I/usr/local/include -I/usr/include"
-set -x  LDFLAGS " -L$HOME/lib -L/usr/local/lib -L/usr/lib -lz -lpthread -lcurses -lm "
-
+#set -x CXX "clang++ -std=c++1y -stdlib=libc++"
+set -x CXX "clang++ -std=c++1y"
+set -x GOPATH $HOME/.local/go
+set -x GEM_HOME $HOME/.local/gems
+set -x PATH $GEM_HOME/bin $GOPATH/bin $PATH
+set -x HOMEBREW_BUILD_FROM_SOURCE YES
+set -x PATH ~/.cabal/bin $PATH
+set -x PKG_CONFIG_PATH /opt/X11/lib/pkgconfig
+set -x ARCHFLAGS -Wno-error=unused-command-line-argument-hard-error-in-future
+set -x DOCKER_HOST "tcp://localhost:4243"

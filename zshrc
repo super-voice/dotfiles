@@ -40,13 +40,12 @@ export UPDATE_ZSH_DAYS=7
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git node)
+plugins=(git node osx brew)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
-export MANPATH=$HOME/share/man:$MANPATH
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/depot_tools
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -57,22 +56,19 @@ alias ls='ls -G'
 alias ll='ls -h1'
 export CC=clang
 export CXX=clang++
-export CFLAGS="-Wall -std=c99 -I$HOME/include -I/usr/local/include"
-export CXXFLAGS="-Wall -Wno-c++98-compat -std=c++1y -I$HOME/include -I/usr/local/include"
-export LDFLAGS=" -L$HOME/lib -L/usr/local/lib -lz -lpthread -lcurses -lm "
-#export HOMEBREW_BUILD_FROM_SOURCE=YES
+unset CXXFLAGS CFLAGS LDFLAGS CPPFLAGS
+export ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future
+export HOMEBREW_BUILD_FROM_SOURCE=YES
 
 export GOPATH=$HOME/.local/go
-export JAVA_HOME=`/usr/libexec/java_home -v 1.6`
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+export PATH="$JAVA_HOME/bin:$GOPATH/bin:$PATH"
+export WORKSPACE=$HOME/Documents/workspace
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -XX:MaxPermSize=256m"
 export VISUAL=/usr/local/bin/vim
 export EDITOR=/usr/local/bin/vim
 
-[ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
-export PATH="$HOME/.rbenv/bin:$PATH"
-source $HOME/bin/activate
-eval "$(rbenv init -)"
-source ~/.rbenv/completions/rbenv.zsh
-#source ~/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-
+export DOCKER_HOST=tcp://localhost:4243
+#source ~/bin/activate
+#
 #set -o vi
