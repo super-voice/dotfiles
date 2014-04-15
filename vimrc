@@ -6,46 +6,44 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
-
-" My Bundles here:
 "
 " original repos on github
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'scrooloose/nerdtree'
-Bundle 'majutsushi/tagbar'
-Bundle 'godlygeek/tabular'
-Bundle 'tomtom/tlib_vim'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'bling/vim-airline'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/syntastic'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'msanders/cocoa.vim'
-Bundle 'eraserhd/vim-ios'
-Bundle 'wincent/Command-T'
-Bundle 'juvenn/mustache.vim'
-Bundle 'tpope/vim-git'
-Bundle 'mattn/zencoding-vim'
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'skammer/vim-css-color'
-Bundle 'helino/vim-json'
-Bundle 'othree/html5.vim'
-Bundle 'othree/eregex.vim'
-Bundle 'pangloss/vim-javascript'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'rhysd/vim-clang-format'
-Bundle 'maksimr/vim-jsbeautify'
-Bundle 'einars/js-beautify'
-Bundle 'JuliaLang/julia-vim'
-Bundle 'reedes/vim-colors-pencil'
+Plugin 'gmarik/vundle'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
+Plugin 'godlygeek/tabular'
+Plugin 'tomtom/tlib_vim'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'bling/vim-airline'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'msanders/cocoa.vim'
+Plugin 'eraserhd/vim-ios'
+Plugin 'wincent/Command-T'
+Plugin 'juvenn/mustache.vim'
+Plugin 'tpope/vim-git'
+Plugin 'mattn/zencoding-vim'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'skammer/vim-css-color'
+Plugin 'helino/vim-json'
+Plugin 'othree/html5.vim'
+Plugin 'othree/eregex.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'einars/js-beautify'
+Plugin 'JuliaLang/julia-vim'
+Plugin 'reedes/vim-colors-pencil'
 
-" Bundle 'airblade/vim-gitgutter.git'
+" Plugin 'airblade/vim-gitgutter.git'
 " vim-scripts repos
-Bundle 'L9'
+Plugin 'L9'
 " non github repos
 " git repos on your local machine (ie. when working on your own plugin)
 " ...
@@ -69,7 +67,7 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Enable detection, plugins and indenting in one step
-" This needs to come AFTER the Bundle commands!
+" This needs to come AFTER the Plugin commands!
 filetype plugin indent on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
