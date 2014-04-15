@@ -57,7 +57,7 @@ alias ll='ls -h1'
 export CC=clang
 export CXX=clang++
 unset CXXFLAGS CFLAGS LDFLAGS CPPFLAGS
-export ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future
+export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
 export HOMEBREW_BUILD_FROM_SOURCE=YES
 
 export GOPATH=$HOME/.local/go
