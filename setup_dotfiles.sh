@@ -5,12 +5,12 @@ script_dir="$( cd "$( dirname "$0" )" && pwd )"
 
 if [[ ! -a ~/.zshrc ]]
 then
-  ln -s $script_dir/zshrc.zsh ~/.zshrc
+  ln -s $script_dir/zshrc ~/.zshrc
 fi
 
 if [[ ! -a ~/.vimrc ]]
 then
-  ln -s $script_dir/vimrc.vim ~/.vimrc
+  ln -s $script_dir/vimrc ~/.vimrc
 fi
 
 if [[ ! -a ~/.config/fish/config.fish ]]
