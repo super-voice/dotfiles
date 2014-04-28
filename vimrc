@@ -41,6 +41,7 @@ Plugin 'einars/js-beautify'
 Plugin 'JuliaLang/julia-vim'
 Plugin 'reedes/vim-colors-pencil'
 Plugin 'jaxbot/github-issues.vim'
+Plugin 'jimenezrick/vimerl'
 
 " Plugin 'airblade/vim-gitgutter.git'
 " vim-scripts repos
