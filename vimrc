@@ -440,7 +440,7 @@ let g:airline_theme = 'tomorrow'
 autocmd FileType javascript noremap <buffer><Leader>cf :call JsBeautify()<cr>
 autocmd FileType html noremap <buffer><Leader>cf :call HtmlBeautify()<cr>
 autocmd FileType css noremap <buffer><Leader>cf :call CSSBeautify()<cr>
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf ><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 let g:eregex_default_enable = 0
 " Toggles '/' to mean eregex search or normal Vim search
