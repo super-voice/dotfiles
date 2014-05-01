@@ -8,7 +8,7 @@ set fish_theme numist
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-fish/plugins/*)
 # Custom plugins may be added to ~/.oh-my-fish/custom/plugins/
 # Example format: set fish_plugins autojump bundler
-set fish_plugins rbenv node python rake
+set fish_plugins node python brew
 
 # Path to your custom folder (default path is $FISH/custom)
 #set fish_custom $HOME/dotfiles/oh-my-fish
@@ -16,11 +16,10 @@ set fish_plugins rbenv node python rake
 # Load oh-my-fish configuration.
 . $fish_path/oh-my-fish.fish
 set -x PATH $HOME/bin /usr/local/bin /usr/local/sbin $PATH $HOME/depot_tools
-set LESSPIPE /usr/local/bin/src-hilite-lesspipe.sh
-set -x LESS '-R'
+set -x LESSOPEN '| /usr/local/bin/src-hilite-lesspipe.sh %s'
+set -x LESS ' -R '
 set -x EDITOR /usr/local/bin/vim
 set -x CC clang
-#set -x CXX "clang++ -std=c++1y -stdlib=libc++"
 set -x CXX "clang++ -std=c++1y"
 set -x GOPATH $HOME/.local/go
 set -x GEM_HOME $HOME/.local/gems
