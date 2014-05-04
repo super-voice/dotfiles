@@ -12,6 +12,7 @@ git config --global alias.ci commit
 git config --global alias.br branch
 git config --global alias.d difftool
 git config --global alias.h help
+git config --global alias.s "status -s -b"
 git config --global alias.sub submodule
 git config --global alias.unstage "reset HEAD"
 git config --global alias.unstash "stash pop"
