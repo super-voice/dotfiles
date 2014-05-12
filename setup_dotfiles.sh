@@ -28,17 +28,6 @@ then
   ln -s $script_dir/vimrc ~/.vimrc
 fi
 
-if [[ ! -a ~/.oh-my-fish ]]
-then
-  git clone git://github.com/bpinto/oh-my-fish.git "$HOME/.oh-my-fish"
-fi
-
-if [[ ! -a ~/.config/fish/config.fish ]]
-then
-  mkdir -p ~/.config/fish
-  ln -s $script_dir/config.fish ~/.config/fish/config.fish
-fi
-
 if [[ ! -a ~/.gitignore_global ]]
 then
   ln -s $script_dir/gitignore_global ~/.gitignore_global
