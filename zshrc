@@ -36,7 +36,6 @@ export WORKSPACE=$HOME/Documents/workspace
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -XX:MaxPermSize=256m"
 export VISUAL=/usr/local/bin/vim
 export EDITOR=/usr/local/bin/vim
-export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig
 #source ~/bin/activate
 #
 #set -o vi
