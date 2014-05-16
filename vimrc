@@ -16,30 +16,18 @@ Plugin 'godlygeek/tabular'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
-Plugin 'terryma/vim-multiple-cursors'
 Plugin 'bling/vim-airline'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'msanders/cocoa.vim'
 Plugin 'eraserhd/vim-ios'
 Plugin 'wincent/Command-T'
-Plugin 'juvenn/mustache.vim'
-Plugin 'tpope/vim-git'
-Plugin 'mattn/zencoding-vim'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'skammer/vim-css-color'
 Plugin 'helino/vim-json'
-Plugin 'othree/html5.vim'
 Plugin 'othree/eregex.vim'
-Plugin 'pangloss/vim-javascript'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'rhysd/vim-clang-format'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'einars/js-beautify'
 Plugin 'JuliaLang/julia-vim'
-Plugin 'reedes/vim-colors-pencil'
 Plugin 'jaxbot/github-issues.vim'
 Plugin 'jimenezrick/vimerl'
 
@@ -437,9 +425,6 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 7
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'tomorrow'
-autocmd FileType javascript noremap <buffer><Leader>cf :call JsBeautify()<cr>
-autocmd FileType html noremap <buffer><Leader>cf :call HtmlBeautify()<cr>
-autocmd FileType css noremap <buffer><Leader>cf :call CSSBeautify()<cr>
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 let g:eregex_default_enable = 0
