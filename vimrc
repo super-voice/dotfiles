@@ -1,6 +1,5 @@
 set nocompatible               " be iMproved
 scriptencoding utf-8
-set shell=/bin/bash
 filetype off  " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
