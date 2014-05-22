@@ -43,6 +43,8 @@ flags = [
 '-DNDEBUG',
 '-std=c++1y',
 '-x', 'c++',
+'-I', '.',
+'-I', './include',
 '-isystem', '/System/Library/Frameworks/Python.framework/Headers',
 '-isystem', '/usr/include',
 '-isystem', '/usr/local/include',
