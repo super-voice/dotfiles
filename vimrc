@@ -27,7 +27,7 @@ Plugin 'othree/eregex.vim'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'JuliaLang/julia-vim'
-Plugin 'jaxbot/github-issues.vim'
+"Plugin 'jaxbot/github-issues.vim'
 Plugin 'jimenezrick/vimerl'
 
 " Plugin 'airblade/vim-gitgutter.git'
