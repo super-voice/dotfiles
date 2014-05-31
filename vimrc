@@ -29,6 +29,7 @@ Plugin 'rhysd/vim-clang-format'
 Plugin 'JuliaLang/julia-vim'
 "Plugin 'jaxbot/github-issues.vim'
 Plugin 'jimenezrick/vimerl'
+Plugin 'rizzatti/dash.vim'
 
 " Plugin 'airblade/vim-gitgutter.git'
 " vim-scripts repos
