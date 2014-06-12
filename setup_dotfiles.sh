@@ -28,6 +28,11 @@ then
   ln -s $script_dir/vimrc ~/.vimrc
 fi
 
+if [[ ! -a ~/.ycm_extra_conf.py ]]
+then
+  ln -s $script_dir/ycm_extra_conf.py ~/.ycm_extra_conf.py
+fi
+
 if [[ ! -a ~/.gitignore_global ]]
 then
   ln -s $script_dir/gitignore_global ~/.gitignore_global
