@@ -70,4 +70,5 @@ platform=$(uname)
 #fi
 
 source $script_dir/gitconfig_setup.sh
+source $script_dir/osx_defaults_setup.sh
 
