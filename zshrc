@@ -38,4 +38,4 @@ export VISUAL=/usr/local/bin/vim
 export EDITOR=/usr/local/bin/vim
 #source ~/bin/activate
 #
-#set -o vi
+set -o vi
