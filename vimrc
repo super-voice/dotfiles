@@ -1,4 +1,5 @@
 set nocompatible               " be iMproved
+set shell=bash
 scriptencoding utf-8
 filetype off  " required!
 set rtp+=~/.vim/bundle/vundle/
@@ -30,6 +31,7 @@ Plugin 'JuliaLang/julia-vim'
 "Plugin 'jaxbot/github-issues.vim'
 Plugin 'jimenezrick/vimerl'
 Plugin 'rizzatti/dash.vim'
+Plugin 'fatih/vim-go'
 
 " Plugin 'airblade/vim-gitgutter.git'
 " vim-scripts repos
@@ -430,4 +432,8 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 let g:eregex_default_enable = 0
 " Toggles '/' to mean eregex search or normal Vim search
 nnoremap <leader>/ :call eregex#toggle()<CR>
+let g:go_disable_autoinstall = 1
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 
