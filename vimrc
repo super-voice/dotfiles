@@ -433,6 +433,7 @@ let g:eregex_default_enable = 0
 " Toggles '/' to mean eregex search or normal Vim search
 nnoremap <leader>/ :call eregex#toggle()<CR>
 let g:go_disable_autoinstall = 1
+let g:go_fmt_autosave = 0
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
