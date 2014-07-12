@@ -22,17 +22,14 @@ alias ls='ls -G'
 alias ll='ls -h1'
 export CC=clang
 export CXX="clang++ -std=c++1y -stdlib=libc++"
-unset CXXFLAGS CFLAGS LDFLAGS CPPFLAGS
 export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
 export HOMEBREW_BUILD_FROM_SOURCE=YES
-export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
-export DOCKER_HOST=tcp://localhost:4243
-export GOPATH=$HOME/.local/go
-export GEM_HOME=$HOME/.local/gems
+export GOPATH=$HOME/.go
+export GEM_HOME=$HOME/.gems
 export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
-export PATH="$GEM_HOME/bin:$JAVA_HOME/bin:$GOPATH/bin:$PATH:/usr/local/opt/go/libexec/bin"
-export WORKSPACE=$HOME/Documents/workspace
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -XX:MaxPermSize=256m"
+export WORKSPACE=$HOME/Documents/workspace
+export PATH="$GEM_HOME/bin:$JAVA_HOME/bin:$GOPATH/bin:$HOME/.cabal/bin:$PATH:/usr/local/opt/go/libexec/bin"
 export VISUAL=/usr/local/bin/vim
 export EDITOR=/usr/local/bin/vim
 #source ~/bin/activate
