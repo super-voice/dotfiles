@@ -44,30 +44,10 @@ then
 fi
 
 mkdir -p $HOME/bin
-mkdir -p $HOME/.local/go
-mkdir -p $HOME/.local/gems
+mkdir -p $HOME/.go
+mkdir -p $HOME/.gems
 
 platform=$(uname)
-
-# Naturally, macvim needs to be installed for this to work
-#if [[ $platform == *Darwin* ]]
-#then
-#  # symlinks for mvim
-#  if [[ -a ~/bin/mvim ]]
-#  then
-#    ln -s ~/bin/mvim ~/bin/gvimdiff
-#    ln -s ~/bin/mvim ~/bin/vimdiff
-#    ln -s ~/bin/mvim ~/bin/vim
-#    ln -s ~/bin/mvim ~/bin/gvim
-#    ln -s ~/bin/mvim ~/bin/vi
-#  else
-#    ln -s /usr/local/bin/mvim ~/bin/gvimdiff
-#    ln -s /usr/local/bin/mvim ~/bin/vimdiff
-#    ln -s /usr/local/bin/mvim ~/bin/vim
-#    ln -s /usr/local/bin/mvim ~/bin/gvim
-#    ln -s /usr/local/bin/mvim ~/bin/vi
-#  fi
-#fi
 
 source $script_dir/gitconfig_setup.sh
 source $script_dir/osx_defaults_setup.sh
