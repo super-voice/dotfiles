@@ -3,24 +3,14 @@
 # get the dir of the current script
 script_dir="$( cd "$( dirname "$0" )" && pwd )"
 
-if [[ ! -a ~/.zpreztorc ]]
-then
-  ln -s $script_dir/zpreztorc ~/.zpreztorc
-fi
-
 if [[ ! -a ~/.zshrc ]]
 then
   ln -s $script_dir/zshrc ~/.zshrc
 fi
 
-if [[ ! -a ~/.zprezto ]]
+if [[ ! -a ~/.oh-my-zsh ]]
 then
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git "$HOME/.zprezto"
-  setopt EXTENDED_GLOB
-  for rcfile in "$HOME"/.zprezto/runcoms/^README.md(.N);
-  do
-    ln -s "$rcfile" "$HOME/.${rcfile:t}"
-  done
+  git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 fi
 
 if [[ ! -a ~/.vimrc ]]
