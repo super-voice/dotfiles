@@ -32,6 +32,7 @@ Plugin 'JuliaLang/julia-vim'
 Plugin 'jimenezrick/vimerl'
 Plugin 'rizzatti/dash.vim'
 Plugin 'fatih/vim-go'
+Plugin 'Chilledheart/vim-lldb'
 
 " Plugin 'airblade/vim-gitgutter.git'
 " vim-scripts repos
