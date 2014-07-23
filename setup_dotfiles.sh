@@ -36,6 +36,7 @@ fi
 mkdir -p $HOME/bin
 mkdir -p $HOME/.go
 mkdir -p $HOME/.gems
+mkdir -p $HOME/.asan
 
 platform=$(uname)
 

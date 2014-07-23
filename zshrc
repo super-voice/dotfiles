@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="ys"
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
 # DISABLE_LS_COLORS="true"
 # DISABLE_AUTO_TITLE="true"
@@ -30,6 +30,7 @@ export LESSOPEN="| ${LESSPIPE} %s"
 export LESS=' -R '
 alias ls='ls -G'
 alias ll='ls -h1'
+alias ldd='otool -L'
 export CC=clang
 export CXX="clang++ -std=c++1y -stdlib=libc++"
 export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
@@ -39,5 +40,7 @@ export GEM_HOME=$HOME/.gems
 export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -XX:MaxPermSize=256m"
 export WORKSPACE=$HOME/Documents/workspace
-export PATH="$GEM_HOME/bin:$JAVA_HOME/bin:$GOPATH/bin:$HOME/.cabal/bin:$PATH:/usr/local/opt/go/libexec/bin:$HOME/.oclint/bin"
+export PATH="$GEM_HOME/bin:$JAVA_HOME/bin:$GOPATH/bin:$HOME/.cabal/bin:$PATH:/usr/local/opt/go/libexec/bin:$HOME/.oclint/bin:$HOME/nacl_sdk"
+export ASAN_SYMBOLIZER_PATH=/usr/local/bin/llvm-symbolizer-3.4
+export ASAN_OPTIONS=verbosity=1:malloc_context_size=30:log_path=$HOME/.asan/asan
 set -o vi
