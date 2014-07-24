@@ -42,5 +42,7 @@ export JAVA_OPTS="-Dfile.encoding=UTF-8 -XX:MaxPermSize=256m"
 export WORKSPACE=$HOME/Documents/workspace
 export PATH="$GEM_HOME/bin:$JAVA_HOME/bin:$GOPATH/bin:$HOME/.cabal/bin:$PATH:/usr/local/opt/go/libexec/bin:$HOME/.oclint/bin:$HOME/nacl_sdk"
 export ASAN_SYMBOLIZER_PATH=/usr/local/bin/llvm-symbolizer-3.4
-export ASAN_OPTIONS=verbosity=1:malloc_context_size=30:log_path=$HOME/.asan/asan
+#export ASAN_OPTIONS="verbosity=3:malloc_context_size=30:log_path=$HOME/.asan/asan:color=never"
+export ASAN_OPTIONS="verbosity=1:malloc_context_size=30:color=always"
+export PYTHONPATH="/usr/local/lib/python2.7/site-packages:$HOME/Library/Python/2.7/lib/python/site-packages:/Library/Python/2.7/site-packages"
 set -o vi
