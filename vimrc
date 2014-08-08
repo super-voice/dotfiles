@@ -263,11 +263,13 @@ if has("multi_byte")
   set fileencodings=ucs-bom,utf-8,latin1
 endif
 
-augroup vimrc
-  " Automatically delete trailing DOS-returns and whitespace on file open and
-  " write.
+" augroup vimrc
+"   " Automatically delete trailing DOS-returns and whitespace on file open and
+"   " write.
 " autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
-augroup END
+" augroup END
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
 
 " this maximizes the gvim window on startup
 if has("gui_win32")
