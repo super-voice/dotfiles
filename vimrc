@@ -269,7 +269,7 @@ endif
 " autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
 " augroup END
 highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /[\s\r \t]\+$/
+match ExtraWhitespace /[\r \t]\+$/
 
 " this maximizes the gvim window on startup
 if has("gui_win32")
