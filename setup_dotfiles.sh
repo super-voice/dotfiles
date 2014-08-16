@@ -33,6 +33,16 @@ then
   ln -s $script_dir/tmux.conf ~/.tmux.conf
 fi
 
+if [[ ! -a ~/.gdbrc ]]
+then
+  ln -s $script_dir/gdbrc ~/.gdbrc
+fi
+
+if [[ ! -a ~/.cgdbrc ]]
+then
+  ln -s $script_dir/cgdbrc ~/.cgdbrc
+fi
+
 mkdir -p $HOME/bin
 mkdir -p $HOME/.go
 mkdir -p $HOME/.gems
