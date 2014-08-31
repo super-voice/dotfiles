@@ -25,9 +25,9 @@ git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(ye
 
 git config --global color.ui true
 
-git config --global diff.tool gvimdiff
+git config --global diff.tool vimdiff
 git config --global difftool.prompt false
-git config --global merge.tool gvimdiff
+git config --global merge.tool vimdiff
 
 git config --global alias.ks "difftool -y -t Kaleidoscope"
 

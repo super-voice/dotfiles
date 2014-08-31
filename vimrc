@@ -292,7 +292,7 @@ if has("gui_gtk2")
   set guifont=Consolas\ 17
 elseif has("gui_macvim")
   " My Mac has a fairly high DPI so the font needs to be bigger
-  set guifont=Monaco:h12
+  set guifont=Monaco:h14
 elseif has("gui_win32")
   set guifont=Consolas:h17
 end
@@ -417,9 +417,9 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_c_compiler = 'clang'
-let g:syntastic_c_compiler_options = ' -I~/include -I/usr/local/include'
+let g:syntastic_c_compiler_options = ' -I/usr/local/include'
 let g:syntastic_cpp_compiler = 'clang++ -std=c++1y'
-let g:syntastic_cpp_compiler_options = ' -I~/include -I/usr/local/include -I/usr/include'
+let g:syntastic_cpp_compiler_options = ' -I/usr/local/include -I/usr/include'
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 let g:clang_format#command = 'clang-format-3.4'

@@ -32,7 +32,7 @@ alias ls='ls -G'
 alias ll='ls -h1'
 alias ldd='otool -L'
 export CC=clang
-export CXX="clang++ -std=c++1y -stdlib=libc++"
+export CXX="clang++ -stdlib=libc++"
 export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
 export HOMEBREW_BUILD_FROM_SOURCE=YES
 export GOPATH=$HOME/.go
@@ -40,7 +40,7 @@ export GEM_HOME=$HOME/.gems
 export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -XX:MaxPermSize=256m"
 export WORKSPACE=$HOME/Documents/workspace
-export PATH="$GEM_HOME/bin:$JAVA_HOME/bin:$GOPATH/bin:$HOME/.cabal/bin:$PATH:/usr/local/opt/go/libexec/bin:$HOME/.oclint/bin:$HOME/nacl_sdk"
+export PATH="$GEM_HOME/bin:$JAVA_HOME/bin:$GOPATH/bin:$HOME/.cabal/bin:$PATH:/usr/local/opt/go/libexec/bin:$HOME/.oclint/bin:$HOME/depot_tools"
 export ASAN_SYMBOLIZER_PATH=/usr/local/bin/llvm-symbolizer-3.4
 #export ASAN_OPTIONS="verbosity=3:malloc_context_size=30:log_path=$HOME/.asan/asan:color=never"
 export ASAN_OPTIONS="verbosity=1:malloc_context_size=30:color=always"

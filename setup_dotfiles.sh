@@ -18,6 +18,11 @@ then
   ln -s $script_dir/vimrc ~/.vimrc
 fi
 
+#if [[ ! -a ~/.nvimrc ]]
+#then
+#  ln -s $script_dir/nvimrc ~/.nvimrc
+#fi
+
 if [[ ! -a ~/.ycm_extra_conf.py ]]
 then
   ln -s $script_dir/ycm_extra_conf.py ~/.ycm_extra_conf.py
