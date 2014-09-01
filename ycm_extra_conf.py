@@ -36,6 +36,7 @@ import ycm_core
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
 cxxflags = [
 '-Wall',
+'-x', 'c++',
 '-Wextra',
 '-Werror',
 '-Wno-variadic-macros',
@@ -43,14 +44,11 @@ cxxflags = [
 '-DNDEBUG',
 '-std=c++1y',
 '-stdlib=libc++',
-'-x', 'c++',
 '-I', '.',
 '-I', 'include',
+'-I', 'src',
 '-I', '/usr/local/opt/libressl/include',
 '-I', '/usr/local/opt/sqlite/include',
-'-I', '/usr/local/include/QtCore',
-'-I', '/usr/local/include/QtGui',
-'-I', '/usr/local/include/QtNetwork',
 '-I', '/usr/local/include/glib-2.0',
 '-I', '/usr/local/lib/glib-2.0/include',
 '-isystem', '/System/Library/Frameworks/Python.framework/Headers',
@@ -62,14 +60,15 @@ cxxflags = [
 
 cflags = [
 '-Wall',
+'-x', 'c',
 '-Wextra',
 '-Wno-variadic-macros',
 '-fexceptions',
 '-DNDEBUG',
 '-std=c99',
-'-x', 'c',
 '-I', '.',
 '-I', 'include',
+'-I', 'src',
 '-I', '/usr/local/include/glib-2.0',
 '-I', '/usr/local/lib/glib-2.0/include',
 '-I', '/usr/local/opt/libressl/include',
@@ -87,6 +86,8 @@ mflags = [
 '-framework', 'Cocoa',
 '-framework', 'Foundation',
 '-I', '.',
+'-I', 'include',
+'-I', 'src',
 '-isystem', '/usr/local/include',
 '-isystem', '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include',
 '-isystem', '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
@@ -102,13 +103,10 @@ mmflags = [
 '-framework', 'Cocoa',
 '-framework', 'Foundation',
 '-I', '.',
-'-I', './include',
 '-I', 'include',
+'-I', 'src',
 '-I', '/usr/local/opt/libressl/include',
 '-I', '/usr/local/opt/sqlite/include',
-'-I', '/usr/local/include/QtCore',
-'-I', '/usr/local/include/QtGui',
-'-I', '/usr/local/include/QtNetwork',
 '-isystem', '/System/Library/Frameworks/Python.framework/Headers',
 '-isystem', '/usr/local/include',
 '-isystem', '/usr/include',
@@ -137,8 +135,8 @@ else:
 
 SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c' , '.m', '.mm']
 
-def DirectoryOfThisScript():
-  return os.path.dirname( os.path.abspath( __file__ ) )
+def DirectoryOfThisScript( filename ):
+  return os.path.dirname( os.path.abspath( filename ) )
 
 def MakeRelativePathsInFlagsAbsolute( flags, working_directory ):
   if not working_directory:
@@ -215,7 +213,7 @@ def FlagsForFile( filename, **kwargs ):
       compilation_info.compiler_working_dir_ )
 
   else:
-    relative_to = DirectoryOfThisScript()
+    relative_to = DirectoryOfThisScript( filename )
     if IsCxxFile( filename ):
       final_flags = MakeRelativePathsInFlagsAbsolute( cxxflags, relative_to )
     elif IsObjcFile( filename ):
