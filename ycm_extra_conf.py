@@ -135,8 +135,8 @@ else:
 
 SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c' , '.m', '.mm']
 
-def DirectoryOfThisScript( filename ):
-  return os.path.dirname( os.path.abspath( filename ) )
+def DirectoryOfThisScript( ):
+  return os.path.dirname( os.path.abspath( __file__ ) )
 
 def MakeRelativePathsInFlagsAbsolute( flags, working_directory ):
   if not working_directory:
@@ -213,7 +213,7 @@ def FlagsForFile( filename, **kwargs ):
       compilation_info.compiler_working_dir_ )
 
   else:
-    relative_to = DirectoryOfThisScript( filename )
+    relative_to = DirectoryOfThisScript( )
     if IsCxxFile( filename ):
       final_flags = MakeRelativePathsInFlagsAbsolute( cxxflags, relative_to )
     elif IsObjcFile( filename ):
