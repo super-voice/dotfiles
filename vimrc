@@ -418,19 +418,21 @@ let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
-let g:syntastic_c_compiler = 'clang'
+let g:syntastic_c_compiler = 'clang-3.5'
 let g:syntastic_c_compiler_options = ' -I/usr/local/include'
-let g:syntastic_cpp_compiler = 'clang++ -std=c++1y'
+let g:syntastic_cpp_compiler = 'clang++-3.5 -std=c++14'
 let g:syntastic_cpp_compiler_options = ' -I/usr/local/include -I/usr/include'
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_confirm_extra_conf = 0
-nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
+nnoremap <leader>y :YcmForceCompileAndDiagnostics<CR>
 nnoremap <leader>pg :YcmCompleter GoTo<CR>
 nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
-let g:clang_format#command = 'clang-format'
+nnoremap <leader>t :!ctags -R --fields=+l --verbose<CR>
+let g:clang_format#command = 'clang-format-3.5'
 let g:clang_format#code_style = 'llvm'
 let g:clang_format#style_options = {
             \ "Standard" : "C++11" }

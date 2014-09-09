@@ -38,10 +38,8 @@ cxxflags = [
 '-Wall',
 '-x', 'c++',
 '-Wextra',
-'-Werror',
 '-Wno-variadic-macros',
 '-fexceptions',
-'-DNDEBUG',
 '-std=c++1y',
 '-stdlib=libc++',
 '-I', '.',
@@ -49,8 +47,6 @@ cxxflags = [
 '-I', 'src',
 '-I', '/usr/local/opt/libressl/include',
 '-I', '/usr/local/opt/sqlite/include',
-'-I', '/usr/local/include/glib-2.0',
-'-I', '/usr/local/lib/glib-2.0/include',
 '-isystem', '/System/Library/Frameworks/Python.framework/Headers',
 '-isystem', '/usr/local/include',
 '-isystem', '/usr/include',
@@ -64,13 +60,10 @@ cflags = [
 '-Wextra',
 '-Wno-variadic-macros',
 '-fexceptions',
-'-DNDEBUG',
 '-std=c99',
 '-I', '.',
 '-I', 'include',
 '-I', 'src',
-'-I', '/usr/local/include/glib-2.0',
-'-I', '/usr/local/lib/glib-2.0/include',
 '-I', '/usr/local/opt/libressl/include',
 '-I', '/usr/local/opt/sqlite/include',
 '-I', '/usr/local/include',
@@ -170,6 +163,10 @@ def IsHeaderFile( filename ):
   extension = os.path.splitext( filename )[ 1 ]
   return extension in [ '.h', '.hxx', '.hpp', '.hh' ]
 
+def IsCFile( filename ):
+  extension = os.path.splitext( filename )[ 1 ]
+  return extension in [ '.c' ]
+
 def IsCxxFile( filename ):
   extension = os.path.splitext( filename )[ 1 ]
   return extension in [ '.cpp', '.cc', '.cxx' ]
@@ -214,14 +211,16 @@ def FlagsForFile( filename, **kwargs ):
 
   else:
     relative_to = DirectoryOfThisScript( )
-    if IsCxxFile( filename ):
+    if IsCFile( filename ):
+      final_flags = MakeRelativePathsInFlagsAbsolute( cflags, relative_to )
+    elif IsCxxFile( filename ):
       final_flags = MakeRelativePathsInFlagsAbsolute( cxxflags, relative_to )
     elif IsObjcFile( filename ):
       final_flags = MakeRelativePathsInFlagsAbsolute( mflags, relative_to )
     elif IsObjcxxFile( filename ):
       final_flags = MakeRelativePathsInFlagsAbsolute( mmflags, relative_to )
     else:
-      final_flags = MakeRelativePathsInFlagsAbsolute( cflags, relative_to )
+      final_flags = MakeRelativePathsInFlagsAbsolute( cxxflags, relative_to )
 
   return {
     'flags': final_flags,
