@@ -10,7 +10,7 @@ COMPLETION_WAITING_DOTS="true"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="mm/dd/yyyy"
 # ZSH_CUSTOM=/path/to/new-custom-folder
-plugins=(git osx brew mercurial)
+plugins=(git osx brew)
 source $ZSH/oh-my-zsh.sh
 # User configuration
 # Preferred editor for local and remote sessions
@@ -41,8 +41,9 @@ export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -XX:MaxPermSize=256m"
 export WORKSPACE=$HOME/Documents/workspace
 export PATH="$GEM_HOME/bin:$JAVA_HOME/bin:$GOPATH/bin:$HOME/.cabal/bin:$PATH:/usr/local/opt/go/libexec/bin:$HOME/.oclint/bin:$HOME/depot_tools"
-export ASAN_SYMBOLIZER_PATH=/usr/local/bin/llvm-symbolizer-3.4
+export ASAN_SYMBOLIZER_PATH=/usr/local/bin/llvm-symbolizer-3.5
 #export ASAN_OPTIONS="verbosity=3:malloc_context_size=30:log_path=$HOME/.asan/asan:color=never"
-export ASAN_OPTIONS="verbosity=1:malloc_context_size=30:color=always"
+export ASAN_OPTIONS="verbosity=1:malloc_context_size=30:abort_on_error=1:color=always"
 export PYTHONPATH="/usr/local/lib/python2.7/site-packages:$HOME/Library/Python/2.7/lib/python/site-packages:/Library/Python/2.7/site-packages"
+export DEVELOPER_DIR="/Applications/Xcode6.app/Contents/Developer"
 set -o vi
