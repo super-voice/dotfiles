@@ -46,4 +46,8 @@ export ASAN_SYMBOLIZER_PATH=/usr/local/bin/llvm-symbolizer-3.5
 export ASAN_OPTIONS="verbosity=1:malloc_context_size=30:abort_on_error=1:color=always"
 export PYTHONPATH="/usr/local/lib/python2.7/site-packages:$HOME/Library/Python/2.7/lib/python/site-packages:/Library/Python/2.7/site-packages"
 export DEVELOPER_DIR="/Applications/Xcode6.app/Contents/Developer"
+export _JAVA_OPTIONS="-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080"
+export ANDROID_HOME="$HOME/android-sdk"
+export ANDROID_NDK_HOME="$HOME/android-ndk"
+export PATH="$PATH:$ANDROID_NDK_HOME"
 set -o vi
