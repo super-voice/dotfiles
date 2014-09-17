@@ -31,8 +31,8 @@ export LESS=' -R '
 alias ls='ls -G'
 alias ll='ls -h1'
 alias ldd='otool -L'
-export CC="clang -fcolor-diagnostics"
-export CXX="clang++ -stdlib=libc++ -fcolor-diagnostics"
+export CC="clang -fcolor-diagnostics -Wall -Wextra"
+export CXX="clang++ -stdlib=libc++ -fcolor-diagnostics -Wall -Wextra"
 export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
 export HOMEBREW_BUILD_FROM_SOURCE=YES
 export GOPATH=$HOME/.go
@@ -45,7 +45,7 @@ export ASAN_SYMBOLIZER_PATH=/usr/local/bin/llvm-symbolizer-3.5
 #export ASAN_OPTIONS="verbosity=3:malloc_context_size=30:log_path=$HOME/.asan/asan:color=never"
 export ASAN_OPTIONS="verbosity=1:malloc_context_size=30:abort_on_error=1:color=always"
 export PYTHONPATH="/usr/local/lib/python2.7/site-packages:$HOME/Library/Python/2.7/lib/python/site-packages:/Library/Python/2.7/site-packages"
-export DEVELOPER_DIR="/Applications/Xcode6.app/Contents/Developer"
+export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
 export _JAVA_OPTIONS="-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080"
 export ANDROID_HOME="$HOME/android-sdk"
 export ANDROID_NDK_HOME="$HOME/android-ndk"
