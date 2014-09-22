@@ -53,7 +53,7 @@ cxxflags = [
 '-isystem', '/System/Library/Frameworks/Python.framework/Headers',
 '-isystem', '/usr/local/include',
 '-isystem', '/usr/include',
-'-isystem', toolchain_basedir + '/usr/bin/../lib/c++/v1',
+'-isystem', toolchain_basedir + '/usr/bin/../include/c++/v1',
 '-isystem', toolchain_basedir + '/usr/include',
 ]
 
@@ -108,7 +108,7 @@ mmflags = [
 '-isystem', '/System/Library/Frameworks/Python.framework/Headers',
 '-isystem', '/usr/local/include',
 '-isystem', '/usr/include',
-'-isystem', toolchain_basedir + '/usr/bin/../lib/c++/v1',
+'-isystem', toolchain_basedir + '/usr/bin/../include/c++/v1',
 '-isystem', toolchain_basedir + '/usr/bin/../lib/clang/6.0/include',
 '-isystem', toolchain_basedir + '/usr/include',
 '-isystem', '/usr/include',
