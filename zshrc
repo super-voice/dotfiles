@@ -39,15 +39,14 @@ export GOPATH=$HOME/.go
 export GEM_HOME=$HOME/.gems
 export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -XX:MaxPermSize=256m"
+export _JAVA_OPTIONS="-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080"
 export WORKSPACE=$HOME/Documents/workspace
-export PATH="$GEM_HOME/bin:$JAVA_HOME/bin:$GOPATH/bin:$HOME/.cabal/bin:$PATH:/usr/local/opt/go/libexec/bin:$HOME/.oclint/bin:$HOME/depot_tools"
 export ASAN_SYMBOLIZER_PATH=/usr/local/bin/llvm-symbolizer-3.5
 #export ASAN_OPTIONS="verbosity=3:malloc_context_size=30:log_path=$HOME/.asan/asan:color=never"
 export ASAN_OPTIONS="verbosity=1:malloc_context_size=30:abort_on_error=1:color=always"
-export PYTHONPATH="/usr/local/lib/python2.7/site-packages:$HOME/Library/Python/2.7/lib/python/site-packages:/Library/Python/2.7/site-packages"
+export PYTHONPATH="$HOME/Library/Python/2.7/lib/python/site-packages:/usr/local/lib/python2.7/site-packages:/Library/Python/2.7/site-packages"
 export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
-export _JAVA_OPTIONS="-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080"
 export ANDROID_HOME="$HOME/android-sdk"
 export ANDROID_NDK_HOME="$HOME/android-ndk"
-export PATH="$PATH:$ANDROID_NDK_HOME"
+export PATH="$ANDROID_NDK_HOME:$HOME/Library/Python/2.7/bin:$GEM_HOME/bin:$JAVA_HOME/bin:$GOPATH/bin:$HOME/.cabal/bin:$PATH:/usr/local/opt/go/libexec/bin:$HOME/.oclint/bin:$HOME/depot_tools"
 set -o vi

@@ -268,6 +268,7 @@ endif
 "   " write.
 " autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
 " augroup END
+nnoremap <leader>w :silent! %s/[\r \t]\+$//<CR>
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /[\r \t]\+$/
 
