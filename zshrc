@@ -31,8 +31,8 @@ export LESS=' -R '
 alias ls='ls -G'
 alias ll='ls -h1'
 alias ldd='otool -L'
-export CC="clang -fcolor-diagnostics -Wall -Wextra"
-export CXX="clang++ -stdlib=libc++ -fcolor-diagnostics -Wall -Wextra"
+export CC="clang -fdiagnostics-format=vi -fdiagnostics-show-category=name -fcolor-diagnostics -pedantic -Wall -Wextra"
+export CXX="clang++ -stdlib=libc++ -fdiagnostics-format=vi -fdiagnostics-show-category=name -fcolor-diagnostics -pedantic -Wall -Wextra"
 export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
 export HOMEBREW_BUILD_FROM_SOURCE=YES
 export GOPATH=$HOME/.go
