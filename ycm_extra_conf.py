@@ -34,87 +34,64 @@ import ycm_core
 
 developer_dir = os.getenv('DEVELOPER_DIR', '/Applications/Xcode.app/Contents/Developer');
 toolchain_basedir = developer_dir + '/Toolchains/XcodeDefault.xctoolchain'
+
+commonflags = [
+'-Wall',
+'-Wextra',
+'-Wno-long-long',
+'-Wno-unused-parameter',
+'-pedantic',
+'-fdiagnostics-format=vi',
+'-fdiagnostics-show-category=name',
+'-isystem', '/usr/local/opt/openssl/include',
+'-isystem', '/usr/local/opt/sqlite/include',
+'-isystem', '/usr/local/include',
+'-isystem', toolchain_basedir + '/usr/include',
+'-isystem', '/usr/include',
+]
+extraflags = [
+'-I', 'third_party',
+]
+cppflags = [
+'-I', '.',
+'-I', 'include',
+'-I', 'src',
+]
+
 # These are the compilation flags that will be used in case there's no
 # compilation database set (by default, one is not set).
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
-cxxflags = [
+cxxflags = cppflags + [
 '-x', 'c++',
 '-std=c++11',
 '-stdlib=libc++',
-'-Wall',
-'-Wextra',
-'-Wno-variadic-macros',
-'-fexceptions',
-'-I', '.',
-'-I', 'include',
-'-I', 'src',
-'-I', '/usr/local/opt/openssl/include',
-'-I', '/usr/local/opt/sqlite/include',
-'-isystem', '/System/Library/Frameworks/Python.framework/Headers',
-'-isystem', '/usr/local/include',
-'-isystem', '/usr/include',
-'-isystem', toolchain_basedir + '/usr/bin/../include/c++/v1',
-'-isystem', toolchain_basedir + '/usr/include',
-]
+'-isystem', toolchain_basedir + '/usr/include/c++/v1',
+] + extraflags + commonflags
 
-cflags = [
+cflags = cppflags + [
 '-x', 'c',
 '-std=c99',
-'-Wall',
-'-Wextra',
-'-Wno-variadic-macros',
-'-fexceptions',
-'-I', '.',
-'-I', 'include',
-'-I', 'src',
-'-I', '/usr/local/opt/openssl/include',
-'-I', '/usr/local/opt/sqlite/include',
-'-I', '/usr/local/include',
-'-isystem', '/System/Library/Frameworks/Python.framework/Headers',
-'-isystem', '/usr/local/include',
-'-isystem', '/usr/include',
-'-isystem', toolchain_basedir + '/usr/include',
-]
+] + extraflags + commonflags
 
-mflags = [
+mflags = cppflags + [
 '-x', 'objective-c',
-'-Wall',
-'-Wextra',
 '-framework', 'Cocoa',
 '-framework', 'Foundation',
-'-I', '.',
-'-I', 'include',
-'-I', 'src',
-'-isystem', '/usr/local/include',
-'-isystem', toolchain_basedir + '/usr/bin/../lib/clang/6.0/include',
-'-isystem', toolchain_basedir + '/usr/include',
-'-isystem', '/usr/include',
+'-isystem', toolchain_basedir + '/usr/lib/clang/6.0/include',
 '-isystem', '/System/Library/Frameworks',
 '-isystem', '/Library/Frameworks',
-]
+] + extraflags + commonflags
 
-mmflags = [
+mmflags = cppflags + [
 '-x', 'objective-c++',
 '-stdlib=libc++',
-'-Wall',
-'-Wextra',
 '-framework', 'Cocoa',
 '-framework', 'Foundation',
-'-I', '.',
-'-I', 'include',
-'-I', 'src',
-'-I', '/usr/local/opt/openssl/include',
-'-I', '/usr/local/opt/sqlite/include',
-'-isystem', '/System/Library/Frameworks/Python.framework/Headers',
-'-isystem', '/usr/local/include',
-'-isystem', '/usr/include',
-'-isystem', toolchain_basedir + '/usr/bin/../include/c++/v1',
-'-isystem', toolchain_basedir + '/usr/bin/../lib/clang/6.0/include',
-'-isystem', toolchain_basedir + '/usr/include',
-'-isystem', '/usr/include',
+'-isystem', toolchain_basedir + '/usr/lib/clang/6.0/include',
 '-isystem', '/System/Library/Frameworks',
 '-isystem', '/Library/Frameworks',
-]
+'-isystem', toolchain_basedir + '/usr/include/c++/v1',
+] + extraflags + commonflags
 
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
