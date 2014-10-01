@@ -27,12 +27,10 @@ Plugin 'helino/vim-json'
 Plugin 'othree/eregex.vim'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'rhysd/vim-clang-format'
-Plugin 'JuliaLang/julia-vim'
 "Plugin 'jaxbot/github-issues.vim'
-Plugin 'jimenezrick/vimerl'
 Plugin 'rizzatti/dash.vim'
-Plugin 'fatih/vim-go'
-Plugin 'Chilledheart/vim-lldb'
+Plugin 'jimenezrick/vimerl'
+Plugin 'wting/rust.vim'
 
 " Plugin 'airblade/vim-gitgutter.git'
 " vim-scripts repos
@@ -446,14 +444,3 @@ au FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 let g:eregex_default_enable = 0
 " Toggles '/' to mean eregex search or normal Vim search
 nnoremap <leader>/ :call eregex#toggle()<CR>
-let g:go_bin_path = expand("~/.go/bin")
-let g:go_fmt_autosave = 0
-au FileType go nmap <Leader>i <Plug>(go-info)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go vnoremap <buffer><Leader>l :GoLint<CR> | cwindow
-au FileType go vnoremap <buffer><Leader>cf :GoFmt<CR>
-
