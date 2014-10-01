@@ -48,5 +48,6 @@ export PYTHONPATH="$HOME/Library/Python/2.7/lib/python/site-packages:/usr/local/
 export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
 export ANDROID_HOME="$HOME/android-sdk"
 export ANDROID_NDK_HOME="$HOME/android-ndk"
-export PATH="$ANDROID_NDK_HOME:$HOME/Library/Python/2.7/bin:$GEM_HOME/bin:$JAVA_HOME/bin:$GOPATH/bin:$HOME/.cabal/bin:$PATH:/usr/local/opt/go/libexec/bin:$HOME/depot_tools"
+export PATH="$HOME/Library/Python/2.7/bin:$GEM_HOME/bin:$JAVA_HOME/bin:$GOPATH/bin:$HOME/.cabal/bin:$PATH:/usr/local/opt/go/libexec/bin:$HOME/depot_tools"
+export PATH="$ANDROID_NDK_HOME:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$HOME/.cov-analysis/bin:$PATH"
 set -o vi
