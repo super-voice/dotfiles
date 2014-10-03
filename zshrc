@@ -55,4 +55,8 @@ export ANDROID_HOME="$HOME/android-sdk"
 export ANDROID_NDK_HOME="$HOME/android-ndk"
 export PATH="$HOME/Library/Python/2.7/bin:$GEM_HOME/bin:$JAVA_HOME/bin:$GOPATH/bin:$HOME/.cabal/bin:$PATH:/usr/local/opt/go/libexec/bin:$HOME/depot_tools"
 export PATH="$ANDROID_NDK_HOME:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$HOME/.cov-analysis/bin:$PATH"
+export CAML_LD_LIBRARY_PATH="$HOME/.opam/system/lib/stublibs:/usr/local/lib/ocaml/stublibs";
+export PERL5LIB="$HOME/.opam/system/lib/perl5";
+export OCAML_TOPLEVEL_PATH="$HOME/.opam/system/lib/toplevel";
+export PATH="$HOME/.opam/system/bin:$PATH"
 set -o vi
