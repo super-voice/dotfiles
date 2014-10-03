@@ -42,7 +42,7 @@ export CXX="clang++ $CXXFLAGS"
 export HOMEBREW_BUILD_FROM_SOURCE=YES
 export GOPATH=$HOME/.go
 export GEM_HOME=$HOME/.gems
-export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home"
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -XX:MaxPermSize=256m"
 export _JAVA_OPTIONS="-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080"
 export WORKSPACE=$HOME/Documents/workspace
