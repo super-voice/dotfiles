@@ -31,9 +31,14 @@ export LESS=' -R '
 alias ls='ls -G'
 alias ll='ls -h1'
 alias ldd='otool -L'
-export CC="clang -fdiagnostics-format=vi -fdiagnostics-show-category=name -fcolor-diagnostics -fno-omit-frame-pointer -pedantic -Wall -Wextra -Wno-long-long -Wno-unused-parameter"
-export CXX="clang++ -stdlib=libc++ -fdiagnostics-format=vi -fdiagnostics-show-category=name -fcolor-diagnostics -fno-omit-frame-pointer -pedantic -Wall -Wextra -Wno-long-long -Wno-unused-parameter"
+COMMONFLAGS="-march=native -fdiagnostics-format=vi -fdiagnostics-show-category=name -fcolor-diagnostics -pedantic -Wall -Wextra -Wno-long-long -Wno-unused-parameter"
+export CFLAGS="$COMMONFLAGS"
+export CXXFLAGS="-stdlib=libc++ $COMMONFLAGS -Woverloaded-virtual"
 export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
+export CFLAGS_DEBUG="$CFLAGS -fno-omit-frame-pointer -g -O0"
+export CXXFLAGS_DEBUG="$CXXFLAGS -fno-omit-frame-pointer -g -O0"
+export CC="clang $CFLAGS"
+export CXX="clang++ $CXXFLAGS"
 export HOMEBREW_BUILD_FROM_SOURCE=YES
 export GOPATH=$HOME/.go
 export GEM_HOME=$HOME/.gems
