@@ -17,7 +17,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'Chilledheart/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}

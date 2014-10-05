@@ -170,3 +170,6 @@ nosetests.xml
 
 #node
 npm-debug.log
+
+#compile commands
+compile_commands.json

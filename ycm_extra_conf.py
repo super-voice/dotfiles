@@ -93,7 +93,6 @@ mmflags = cppflags + [
 '-isystem', toolchain_basedir + '/usr/include/c++/v1',
 ] + extraflags + commonflags
 
-
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for
 # more details: http://clang.llvm.org/docs/JSONCompilationDatabase.html
