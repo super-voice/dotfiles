@@ -431,7 +431,6 @@ nnoremap <leader>pg :YcmCompleter GoTo<CR>
 nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>t :!ctags -R --fields=+l --verbose<CR>
-let g:clang_format#command = 'clang-format-3.5'
 let g:clang_format#code_style = 'llvm'
 let g:clang_format#style_options = {
             \ "Standard" : "C++11" }
