@@ -13,12 +13,11 @@ git config --global alias.br branch
 git config --global alias.d difftool
 git config --global alias.h help
 git config --global alias.s "status -s -b"
+git config --global alias.stat "diff --stat"
 git config --global alias.sub submodule
 git config --global alias.unstage "reset HEAD"
 git config --global alias.unstash "stash pop"
 git config --global alias.dst "diff --staged"
-git config --global alias.dc "!git diff | cdiff -s"
-git config --global alias.dcs "!git diff --staged | cdiff -s"
 git config --global alias.cp "cherry-pick"
 git config --global alias.wdiff "diff --color-words"
 
