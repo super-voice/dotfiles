@@ -61,6 +61,13 @@ augroup END
 " This needs to come AFTER the Plugin commands!
 filetype plugin indent on
 
+augroup filetype
+  au! BufRead,BufNewFile *.ll     set filetype=llvm
+  au! BufRead,BufNewFile *.td     set filetype=tablegen
+  au! BufRead,BufNewFile *.rst    set filetype=rest
+  au! BufRead,BufNewFile *.proto  set filetype=proto
+augroup END
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            General settings                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -261,11 +268,12 @@ if has("multi_byte")
   set fileencodings=ucs-bom,utf-8,latin1
 endif
 
-" augroup vimrc
-"   " Automatically delete trailing DOS-returns and whitespace on file open and
-"   " write.
-" autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
-" augroup END
+augroup vimrc
+" Automatically delete trailing DOS-returns and whitespace on file open and
+" write.
+  autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
+augroup END
+
 nnoremap <leader>w :silent! %s/[\r \t]\+$//<CR>
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /[\r \t]\+$/

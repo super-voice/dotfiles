@@ -52,6 +52,9 @@ mkdir -p $HOME/bin
 mkdir -p $HOME/.go
 mkdir -p $HOME/.gems
 mkdir -p $HOME/.asan
+mkdir -p $HOME/.vim/syntax
+
+cp -f $script_dir/extra/*.vim $HOME/.vim/syntax/
 
 platform=$(uname)
 
