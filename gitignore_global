@@ -173,3 +173,7 @@ npm-debug.log
 
 #compile commands
 compile_commands.json
+
+#ninja stuff
+build.ninja
+rules.ninja
