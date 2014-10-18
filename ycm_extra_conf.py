@@ -33,7 +33,8 @@ import ycm_core
 
 
 developer_dir = os.getenv('DEVELOPER_DIR', '/Applications/Xcode.app/Contents/Developer');
-toolchain_basedir = developer_dir + '/Toolchains/XcodeDefault.xctoolchain'
+cxx_basedir = developer_dir + '/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1'
+inner_basedir = developer_dir + '/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/6.0/include'
 
 commonflags = [
 '-Wall',
@@ -45,9 +46,10 @@ commonflags = [
 '-fdiagnostics-show-category=name',
 '-isystem', '/usr/local/opt/openssl/include',
 '-isystem', '/usr/local/opt/sqlite/include',
+'-isystem', '/usr/local/opt/llvm/include',
 '-isystem', '/usr/local/include',
-'-isystem', toolchain_basedir + '/usr/include',
-'-isystem', '/usr/include',
+'-isystem', inner_basedir,
+'-isysroot', '/'
 ]
 extraflags = [
 '-I', 'third_party',
@@ -56,6 +58,7 @@ cppflags = [
 '-I', '.',
 '-I', 'include',
 '-I', 'src',
+'-I', 'lib',
 ]
 
 # These are the compilation flags that will be used in case there's no
@@ -65,7 +68,7 @@ cxxflags = cppflags + [
 '-x', 'c++',
 '-std=c++11',
 '-stdlib=libc++',
-'-isystem', toolchain_basedir + '/usr/include/c++/v1',
+'-isystem', cxx_basedir,
 ] + extraflags + commonflags
 
 cflags = cppflags + [
@@ -77,7 +80,6 @@ mflags = cppflags + [
 '-x', 'objective-c',
 '-framework', 'Cocoa',
 '-framework', 'Foundation',
-'-isystem', toolchain_basedir + '/usr/lib/clang/6.0/include',
 '-isystem', '/System/Library/Frameworks',
 '-isystem', '/Library/Frameworks',
 ] + extraflags + commonflags
@@ -87,10 +89,9 @@ mmflags = cppflags + [
 '-stdlib=libc++',
 '-framework', 'Cocoa',
 '-framework', 'Foundation',
-'-isystem', toolchain_basedir + '/usr/lib/clang/6.0/include',
 '-isystem', '/System/Library/Frameworks',
 '-isystem', '/Library/Frameworks',
-'-isystem', toolchain_basedir + '/usr/include/c++/v1',
+'-isystem', cxx_basedir,
 ] + extraflags + commonflags
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
