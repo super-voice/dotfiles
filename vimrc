@@ -271,7 +271,7 @@ endif
 augroup vimrc
 " Automatically delete trailing DOS-returns and whitespace on file open and
 " write.
-  autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
+  "autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
 augroup END
 
 nnoremap <leader>w :silent! %s/[\r \t]\+$//<CR>

@@ -59,4 +59,5 @@ export CAML_LD_LIBRARY_PATH="$HOME/.opam/system/lib/stublibs:/usr/local/lib/ocam
 export PERL5LIB="$HOME/.opam/system/lib/perl5";
 export OCAML_TOPLEVEL_PATH="$HOME/.opam/system/lib/toplevel";
 export PATH="$HOME/.opam/system/bin:$PATH"
+export PATH="$HOME/arcanist/bin:$PATH"
 set -o vi
