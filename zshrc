@@ -60,4 +60,5 @@ export PERL5LIB="$HOME/.opam/system/lib/perl5";
 export OCAML_TOPLEVEL_PATH="$HOME/.opam/system/lib/toplevel";
 export PATH="$HOME/.opam/system/bin:$PATH"
 export PATH="$HOME/arcanist/bin:$PATH"
+export PATH="$HOME/nacl_sdk:$PATH"
 set -o vi
