@@ -32,7 +32,7 @@ alias ldd='otool -L'
 COMMONFLAGS="-march=native -fdiagnostics-format=vi -fdiagnostics-show-category=name -fcolor-diagnostics -pedantic -Wall -Wextra -Wno-long-long -Wno-unused-parameter"
 export CFLAGS="$COMMONFLAGS"
 export CXXFLAGS="-stdlib=libc++ $COMMONFLAGS -Woverloaded-virtual"
-export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
+export ARCHFLAGS="-Wno-error=unused-command-line-argument"
 export CFLAGS_DEBUG="$CFLAGS -fno-omit-frame-pointer -g -O0"
 export CXXFLAGS_DEBUG="$CXXFLAGS -fno-omit-frame-pointer -g -O0"
 export CC="clang $CFLAGS"
@@ -47,7 +47,7 @@ export WORKSPACE=$HOME/Documents/workspace
 export ASAN_SYMBOLIZER_PATH=/usr/local/bin/llvm-symbolizer-3.5
 #export ASAN_OPTIONS="verbosity=3:malloc_context_size=30:log_path=$HOME/.asan/asan:color=never"
 export ASAN_OPTIONS="verbosity=1:malloc_context_size=30:abort_on_error=1:color=always"
-export PYTHONPATH="$HOME/Library/Python/2.7/lib/python/site-packages:/usr/local/lib/python2.7/site-packages:/Library/Python/2.7/site-packages"
+export PYTHONPATH="$HOME/Library/Python/2.7/lib/python2.7/site-packages"
 export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
 export ANDROID_HOME="$HOME/android-sdk"
 export ANDROID_NDK_HOME="$HOME/android-ndk"
