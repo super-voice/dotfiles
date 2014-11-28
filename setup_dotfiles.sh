@@ -18,10 +18,10 @@ then
   ln -s $script_dir/vimrc ~/.vimrc
 fi
 
-#if [[ ! -a ~/.nvimrc ]]
-#then
-#  ln -s $script_dir/nvimrc ~/.nvimrc
-#fi
+if [[ ! -a ~/envs.sh ]]
+then
+  ln -s $script_dir/envs.sh ~/envs.sh
+fi
 
 if [[ ! -a ~/.ycm_extra_conf.py ]]
 then
