@@ -34,8 +34,9 @@ import ycm_core
 
 home_dir = os.getenv('HOME', '/usr/local/opt')
 developer_dir = os.getenv('DEVELOPER_DIR', '/Applications/Xcode.app/Contents/Developer');
-cxx_basedir = developer_dir + '/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1'
-inner_basedir = developer_dir + '/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/6.0/include'
+#toolchain_dir = developer_dir + "/Toolchains/XcodeDefault.xctoolchain"
+toolchain_dir = "/Library/Developer/CommandLineTools"
+cxx_basedir = toolchain_dir + '/usr/include/c++/v1'
 
 commonflags = [
 '-Wall',
@@ -49,12 +50,12 @@ commonflags = [
 '-isystem', '/usr/local/opt/openssl/include',
 '-isystem', '/usr/local/opt/sqlite/include',
 '-isystem', '/usr/local/include',
-'-isystem', inner_basedir,
-'-isysroot', '/'
 ]
+
 extraflags = [
 '-I', 'third_party',
 ]
+
 cppflags = [
 '-I', '.',
 '-I', 'include',
