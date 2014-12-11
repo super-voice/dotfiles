@@ -9,17 +9,24 @@ while [ $# -ge 1 ]; do
     "debug" )
       COMMONFLAGS="-march=native -fcolor-diagnostics -pedantic -Wall -Wextra -Wno-long-long -Wno-unused-parameter"
       DEBUGFLAGS="$COMMONFLAGS -fno-omit-frame-pointer -g -O0"
-      export CFLAGS="$DEBUGFLAGS"
-      export CXXFLAGS="-stdlib=libc++ $DEBUGFLAGS -Woverloaded-virtual"
+      export CFLAGS="$CFLAGS $DEBUGFLAGS"
+      export CXXFLAGS="$CXXFLAGS -stdlib=libc++ $DEBUGFLAGS -Woverloaded-virtual"
+      ;;
+    "extra" )
+      export CPPFLAGS="-I/opt/extra/include $CPPFLAGS"
+      export LDFLAGS="-L/opt/extra/lib $LDFLAGS"
+      export PKG_CONFIG_PATH=/opt/extra/lib/pkgconfig:$PKG_CONFIG_PATH
       ;;
     "trunk" )
       BASE_DIR=$HOME/build-trunk
+      CLANG_DIR=$HOME/build-clang
+      RT_DIR=$HOME/build-rt
 
       export PATH=$BASE_DIR/bin:$PATH
       export PKG_CONFIG_PATH=$BASE_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
       export CXXFLAGS="${CXXFLAGS} -stdlib=libc++ -I$BASE_DIR/include -isystem $LIBCXX_INCLUDE_DIR"
-      export LDFLAGS="${LDFLAGS} -L$BASE_DIR/lib"
-      export DYLD_FALLBACK_LIBRARY_PATH=$BASE_DIR/lib:$BASE_DIR/lib/clang/3.6.0/lib/darwin
+      export LDFLAGS="${LDFLAGS} -L$BASE_DIR/lib -L$CLANG_DIR/lib -L$RT_DIR/lib/darwin"
+      export DYLD_FALLBACK_LIBRARY_PATH=$BASE_DIR/lib:$CLANG_DIR/lib:$RT_DIR/lib/darwin
       export ASAN_SYMBOLIZER_PATH=$BASE_DIR/bin/llvm-symbolizer
       ;;
     "clang" )
@@ -30,6 +37,16 @@ while [ $# -ge 1 ]; do
       export CXXFLAGS="${CXXFLAGS} -stdlib=libc++ -I$BASE_DIR/include -isystem $LIBCXX_INCLUDE_DIR"
       export LDFLAGS="${LDFLAGS} -L$BASE_DIR/lib"
       export DYLD_FALLBACK_LIBRARY_PATH=$BASE_DIR/lib:$BASE_DIR/lib/clang/3.5.0/lib/darwin
+      export ASAN_SYMBOLIZER_PATH=$BASE_DIR/bin/llvm-symbolizer
+      ;;
+    "clang2" )
+      BASE_DIR=$HOME/build2
+
+      export PATH=$BASE_DIR/bin:$PATH
+      export PKG_CONFIG_PATH=$BASE_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
+      export CXXFLAGS="${CXXFLAGS} -stdlib=libc++ -I$BASE_DIR/include"
+      export LDFLAGS="${LDFLAGS} -L$BASE_DIR/lib"
+      export DYLD_FALLBACK_LIBRARY_PATH=$BASE_DIR/lib:$BASE_DIR/lib/clang/3.6.0/lib/darwin
       export ASAN_SYMBOLIZER_PATH=$BASE_DIR/bin/llvm-symbolizer
       ;;
     "homebrew" )
@@ -68,12 +85,15 @@ while [ $# -ge 1 ]; do
       export LDFLAGS="${LDFLAGS} -L$RUST_BASE/lib"
       export DYLD_FALLBACK_LIBRARY_PATH=$RUST_BASE/lib
       ;;
-    *)
+    "reset")
       export CC=clang
       export CXX=clang++
       unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS LLVM_CONFIG
       unset DYLD_FALLBACK_LIBRARY_PATH
       ;;
+    *)
+      echo "unknown argument"
+      break
   esac
   shift
 done

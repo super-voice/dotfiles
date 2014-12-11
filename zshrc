@@ -41,7 +41,7 @@ export PATH=/usr/local/bin:$TOOLCHAIN_DIR/usr/bin:/usr/local/sbin:$PATH
 # Sanitizer-related
 export ASAN_SYMBOLIZER_PATH=/usr/local/bin/llvm-symbolizer-3.5
 #export ASAN_OPTIONS="verbosity=3:malloc_context_size=30:log_path=$HOME/.asan/asan:color=never"
-export ASAN_OPTIONS="verbosity=1:malloc_context_size=30:abort_on_error=1:color=always"
+export ASAN_OPTIONS="verbosity=0:malloc_context_size=30:abort_on_error=1:color=always"
 
 # Nacl-related
 export PATH="$HOME/nacl_sdk:$PATH"
@@ -68,6 +68,10 @@ export PATH="$GEM_HOME/bin:$PATH"
 # Go-related
 export GOPATH=$HOME/.go
 export PATH="$GOPATH/bin:$PATH:/usr/local/opt/go/libexec/bin"
+
+# Haskell-related
+CABAL_BASE=$HOME/.cabal/bin
+export PATH="$CABAL_BASE:$PATH"
 
 # Homebrew-related
 export HOMEBREW_BUILD_FROM_SOURCE=YES
