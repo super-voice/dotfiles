@@ -177,3 +177,14 @@ compile_commands.json
 #ninja stuff
 build.ninja
 rules.ninja
+
+#xcode stuff
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.mode1v3
+*.mode2v3
+*.xcodeproj/xcuserdata/*.xcuserdatad
+*.xcuserdatad
+*.swp
+*.xccheckout

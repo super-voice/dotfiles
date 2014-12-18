@@ -8,7 +8,7 @@ while [ $# -ge 1 ]; do
   case $1 in
     "debug" )
       COMMONFLAGS="-march=native -fcolor-diagnostics -pedantic -Wall -Wextra -Wno-long-long -Wno-unused-parameter"
-      DEBUGFLAGS="$COMMONFLAGS -fno-omit-frame-pointer -g -O0"
+      DEBUGFLAGS="$COMMONFLAGS -fno-omit-frame-pointer -g3 -O0"
       export CFLAGS="$CFLAGS $DEBUGFLAGS"
       export CXXFLAGS="$CXXFLAGS -stdlib=libc++ $DEBUGFLAGS -Woverloaded-virtual"
       ;;
@@ -19,14 +19,12 @@ while [ $# -ge 1 ]; do
       ;;
     "trunk" )
       BASE_DIR=$HOME/build-trunk
-      CLANG_DIR=$HOME/build-clang
-      RT_DIR=$HOME/build-rt
 
       export PATH=$BASE_DIR/bin:$PATH
       export PKG_CONFIG_PATH=$BASE_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
       export CXXFLAGS="${CXXFLAGS} -stdlib=libc++ -I$BASE_DIR/include -isystem $LIBCXX_INCLUDE_DIR"
-      export LDFLAGS="${LDFLAGS} -L$BASE_DIR/lib -L$CLANG_DIR/lib -L$RT_DIR/lib/darwin"
-      export DYLD_FALLBACK_LIBRARY_PATH=$BASE_DIR/lib:$CLANG_DIR/lib:$RT_DIR/lib/darwin
+      export LDFLAGS="${LDFLAGS} -L$BASE_DIR/lib -L$BASE_DIR/lib/darwin"
+      export DYLD_FALLBACK_LIBRARY_PATH=$BASE_DIR/lib:$BASE_DIR/lib/darwin
       export ASAN_SYMBOLIZER_PATH=$BASE_DIR/bin/llvm-symbolizer
       ;;
     "clang" )
@@ -36,19 +34,17 @@ while [ $# -ge 1 ]; do
       export PKG_CONFIG_PATH=$BASE_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
       export CXXFLAGS="${CXXFLAGS} -stdlib=libc++ -I$BASE_DIR/include -isystem $LIBCXX_INCLUDE_DIR"
       export LDFLAGS="${LDFLAGS} -L$BASE_DIR/lib"
-      export DYLD_FALLBACK_LIBRARY_PATH=$BASE_DIR/lib:$BASE_DIR/lib/clang/3.5.0/lib/darwin
+      export DYLD_FALLBACK_LIBRARY_PATH=$BASE_DIR/lib:$BASE_DIR/lib/clang/3.5.1/lib/darwin
       export ASAN_SYMBOLIZER_PATH=$BASE_DIR/bin/llvm-symbolizer
       ;;
     "clang2" )
       BASE_DIR=$HOME/build2
 
       export PATH=$BASE_DIR/bin:$PATH
-      export PKG_CONFIG_PATH=$BASE_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
-      export CXXFLAGS="${CXXFLAGS} -stdlib=libc++ -I$BASE_DIR/include"
-      export LDFLAGS="${LDFLAGS} -L$BASE_DIR/lib"
       export DYLD_FALLBACK_LIBRARY_PATH=$BASE_DIR/lib:$BASE_DIR/lib/clang/3.6.0/lib/darwin
-      export ASAN_SYMBOLIZER_PATH=$BASE_DIR/bin/llvm-symbolizer
+      unset ASAN_SYMBOLIZER_PATH
       ;;
+
     "homebrew" )
       export MAKEFLAGS=-j8
       export PATH=/usr/local/opt/openssl/bin:/usr/local/opt/curl/bin:$PATH
