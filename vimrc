@@ -76,7 +76,7 @@ augroup END
 
 " DISPLAY SETTINGS
 colorscheme jellybeans    " sets the colorscheme
-set background=dark     " enable for dark terminals
+" set background=dark     " enable for dark terminals
 set scrolloff=2         " 2 lines above/below cursor when scrolling
 set showmatch           " show matching bracket (briefly jump)
 set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
@@ -87,7 +87,7 @@ set title               " show file in titlebar
 set undofile            " stores undo state even when files are closed (in undodir)
 set cursorline          " highlights the current line
 set winaltkeys=no       " turns of the Alt key bindings to the gui menu
-" set number
+set number
 
 " When you type the first tab, it will complete as much as possible, the second
 " tab hit will provide a list, the third and subsequent tabs will cycle through
