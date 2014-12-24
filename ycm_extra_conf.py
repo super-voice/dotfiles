@@ -35,8 +35,8 @@ import ycm_core
 home_dir = os.getenv('HOME', '/usr/local/opt')
 developer_dir = os.getenv('DEVELOPER_DIR', '/Applications/Xcode.app/Contents/Developer');
 #toolchain_dir = developer_dir + "/Toolchains/XcodeDefault.xctoolchain"
-toolchain_dir = "/Library/Developer/CommandLineTools"
-cxx_basedir = toolchain_dir + '/usr/include/c++/v1'
+toolchain_dir = '/Library/Developer/CommandLineTools'
+cxx_basedir = '/Library/Developer/CommandLineTools/usr/include/c++/v1'
 
 commonflags = [
 '-Wall',
@@ -46,13 +46,10 @@ commonflags = [
 '-pedantic',
 '-fdiagnostics-format=vi',
 '-fdiagnostics-show-category=name',
-'-isystem', home_dir + '/build-trunk/include',
-'-isystem', '/usr/local/opt/openssl/include',
-'-isystem', '/usr/local/opt/sqlite/include',
-'-isystem', '/usr/local/include',
 ]
 
 extraflags = [
+'-I', home_dir + '/build-trunk/include',
 '-I', 'third_party',
 ]
 
@@ -61,17 +58,23 @@ cppflags = [
 '-I', 'include',
 '-I', 'src',
 '-I', 'lib',
+'-isystem', '/usr/local/opt/openssl/include',
+'-isystem', '/usr/local/opt/sqlite/include',
+'-isystem', '/usr/local/include'
+'-isystem', '/Library/Developer/CommandLineTools/usr/lib/clang/6.0/include'
+'-isystem', '/Library/Developer/CommandLineTools/usr/include'
+'-isystem', '/usr/include'
 ]
 
 # These are the compilation flags that will be used in case there's no
 # compilation database set (by default, one is not set).
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
-cxxflags = cppflags + [
+cxxflags = [
 '-x', 'c++',
 '-std=c++11',
 '-stdlib=libc++',
 '-isystem', cxx_basedir,
-] + extraflags + commonflags
+] + cppflags + extraflags + commonflags
 
 cflags = cppflags + [
 '-x', 'c',
@@ -86,7 +89,7 @@ mflags = cppflags + [
 '-isystem', '/Library/Frameworks',
 ] + extraflags + commonflags
 
-mmflags = cppflags + [
+mmflags = [
 '-x', 'objective-c++',
 '-stdlib=libc++',
 '-framework', 'Cocoa',
@@ -94,7 +97,7 @@ mmflags = cppflags + [
 '-isystem', '/System/Library/Frameworks',
 '-isystem', '/Library/Frameworks',
 '-isystem', cxx_basedir,
-] + extraflags + commonflags
+] +  cppflags + extraflags + commonflags
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for

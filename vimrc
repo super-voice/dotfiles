@@ -438,7 +438,7 @@ nnoremap <leader>y :YcmForceCompileAndDiagnostics<CR>
 nnoremap <leader>pg :YcmCompleter GoTo<CR>
 nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>t :!ctags -R --fields=+l --verbose<CR>
+nnoremap <leader>t :!ctags -R --languages=C,C++ --fields=+l --exclude=.git --exclude=build --exclude=out --verbose<CR>
 let g:clang_format#code_style = 'llvm'
 let g:clang_format#style_options = {
             \ "Standard" : "C++11" }
