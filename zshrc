@@ -31,8 +31,6 @@ alias ldd='otool -L'
 
 # Compiler-related
 export ARCHFLAGS="-Wno-error=unused-command-line-argument"
-export CC="clang"
-export CXX="clang++"
 export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
 #TOOLCHAIN_DIR="$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain"
 TOOLCHAIN_DIR="/Library/Developer/CommandLineTools"

@@ -7,7 +7,7 @@ LIBCXX_INCLUDE_DIR=$TOOLCHAIN_DIR/usr/include/c++/v1
 while [ $# -ge 1 ]; do
   case $1 in
     "debug" )
-      COMMONFLAGS="-march=native -fcolor-diagnostics -pedantic -Wall -Wextra -Wno-long-long -Wno-unused-parameter"
+      COMMONFLAGS="-march=native -fcolor-diagnostics -Wall -Wextra -Wno-long-long -Wno-unused-parameter"
       DEBUGFLAGS="$COMMONFLAGS -fno-omit-frame-pointer -g3 -O0"
       export CFLAGS="$DEBUGFLAGS $CFLAGS"
       export CXXFLAGS="-stdlib=libc++ $DEBUGFLAGS -Woverloaded-virtual $CXXFLAGS"
@@ -71,8 +71,7 @@ while [ $# -ge 1 ]; do
       export DYLD_FALLBACK_LIBRARY_PATH=$RUST_BASE/lib
       ;;
     "reset")
-      export CC=clang
-      export CXX=clang++
+      unset CC CXX
       unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS LLVM_CONFIG
       unset DYLD_FALLBACK_LIBRARY_PATH
       ;;
