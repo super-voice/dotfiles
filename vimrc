@@ -31,6 +31,7 @@ Plugin 'rhysd/vim-clang-format'
 Plugin 'rizzatti/dash.vim'
 Plugin 'jimenezrick/vimerl'
 Plugin 'wting/rust.vim'
+Plugin 'rking/ag.vim'
 
 " Plugin 'airblade/vim-gitgutter.git'
 " vim-scripts repos
