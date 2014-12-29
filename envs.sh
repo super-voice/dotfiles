@@ -30,6 +30,8 @@ while [ $# -ge 1 ]; do
     "clang" )
       BASE_DIR=$HOME/build
 
+      export CC=clang
+      export CXX=clang++
       export PATH=$BASE_DIR/bin:$PATH
       export PKG_CONFIG_PATH=$BASE_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
       export CXXFLAGS="-stdlib=libc++ -I$BASE_DIR/include -isystem $LIBCXX_INCLUDE_DIR ${CXXFLAGS}"
@@ -40,6 +42,8 @@ while [ $# -ge 1 ]; do
     "clang2" )
       BASE_DIR=$HOME/build2
 
+      export CC=clang
+      export CXX=clang++
       export PATH=$BASE_DIR/bin:$PATH
       export DYLD_FALLBACK_LIBRARY_PATH=$BASE_DIR/lib:$BASE_DIR/lib/clang/3.6.0/lib/darwin:$DYLD_FALLBACK_LIBRARY_PATH
       unset ASAN_SYMBOLIZER_PATH
