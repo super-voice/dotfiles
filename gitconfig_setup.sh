@@ -1,9 +1,7 @@
 #!/bin/bash
 
 git config --global user.name "Chilledheart"
-
 git config --global user.email "rwindz0@gmail.com"
-
 git config --global github.user Chilledheart
 
 git config --global alias.st status
@@ -56,8 +54,6 @@ git config --global push.default upstream
 # the repo, but for Windows checkouts it converts LF to CRLF (and back to LF on
 # commits)
 git config --global core.autocrlf input
-
-script_dir="$( cd "$( dirname "$0" )" && pwd )"
 
 git config --global core.excludesfile ~/.gitignore_global
 

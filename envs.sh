@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
 #TOOLCHAIN_DIR="$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain"
 TOOLCHAIN_DIR="/Library/Developer/CommandLineTools"

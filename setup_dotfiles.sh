@@ -1,11 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env /bash
+
+set -e
 
 # get the dir of the current script
-script_dir="$( cd "$( dirname "$0" )" && pwd )"
+PWD=$(dirname "${BASH_SOURCE[0]}")
+#Platform
+PLATFORM=$(uname -s)
 
 if [[ ! -a ~/.zshrc ]]
 then
-  ln -s $script_dir/zshrc ~/.zshrc
+  ln -sv $PWD/zshrc ~/.zshrc
 fi
 
 if [[ ! -a ~/.oh-my-zsh ]]
@@ -15,49 +19,49 @@ fi
 
 if [[ ! -a ~/.vimrc ]]
 then
-  ln -s $script_dir/vimrc ~/.vimrc
+  ln -sv $PWD/vimrc ~/.vimrc
 fi
 
 if [[ ! -a ~/envs.sh ]]
 then
-  ln -s $script_dir/envs.sh ~/envs.sh
+  ln -sv $PWD/envs.sh ~/envs.sh
 fi
 
 if [[ ! -a ~/.ycm_extra_conf.py ]]
 then
-  ln -s $script_dir/ycm_extra_conf.py ~/.ycm_extra_conf.py
+  ln -sv $PWD/ycm_extra_conf.py ~/.ycm_extra_conf.py
 fi
 
 if [[ ! -a ~/.gitignore_global ]]
 then
-  ln -s $script_dir/gitignore_global ~/.gitignore_global
+  ln -sv $PWD/gitignore_global ~/.gitignore_global
 fi
 
 if [[ ! -a ~/.tmux.conf ]]
 then
-  ln -s $script_dir/tmux.conf ~/.tmux.conf
+  ln -sv $PWD/tmux.conf ~/.tmux.conf
 fi
 
 if [[ ! -a ~/.gdbrc ]]
 then
-  ln -s $script_dir/gdbrc ~/.gdbrc
+  ln -sv $PWD/gdbrc ~/.gdbrc
 fi
 
 if [[ ! -a ~/.cgdbrc ]]
 then
-  ln -s $script_dir/cgdbrc ~/.cgdbrc
+  ln -sv $PWD/cgdbrc ~/.cgdbrc
 fi
 
-mkdir -p $HOME/bin
-mkdir -p $HOME/.go
-mkdir -p $HOME/.gems
-mkdir -p $HOME/.asan
-mkdir -p $HOME/.vim/syntax
+mkdir -pv $HOME/bin
+mkdir -pv $HOME/.go
+mkdir -pv $HOME/.gems
+mkdir -pv $HOME/.vim/syntax
 
-cp -f $script_dir/extra/*.vim $HOME/.vim/syntax/
+cp -fv $PWD/vim/*.vim $HOME/.vim/syntax/
 
-platform=$(uname)
+. $PWD/gitconfig_setup.sh
 
-source $script_dir/gitconfig_setup.sh
-source $script_dir/osx_defaults_setup.sh
+if [ "$PLATFORM" = "Darwin" ]; then
+  . $PWD/osx_defaults_setup.sh
+fi
 

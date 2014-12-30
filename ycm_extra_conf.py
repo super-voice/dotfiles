@@ -58,6 +58,8 @@ cppflags = [
 '-I', 'include',
 '-I', 'src',
 '-I', 'lib',
+'-I', '/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7',
+'-I', '/System/Library/Frameworks/Ruby.framework/Versions/2.0/Headers',
 '-isystem', '/usr/local/opt/openssl/include',
 '-isystem', '/usr/local/opt/sqlite/include',
 '-isystem', '/usr/local/include'
