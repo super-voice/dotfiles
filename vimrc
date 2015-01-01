@@ -426,11 +426,7 @@ let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
-let g:syntastic_c_compiler = 'clang-3.5'
-let g:syntastic_c_compiler_options = ' -I/usr/local/include'
-let g:syntastic_cpp_compiler = 'clang++-3.5 -std=c++14'
-let g:syntastic_cpp_compiler_options = ' -I/usr/local/include -I/usr/include'
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_show_diagnostics_ui = 1
 let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 let g:ycm_collect_identifiers_from_tags_files = 1

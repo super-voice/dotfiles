@@ -17,16 +17,6 @@ while [ $# -ge 1 ]; do
       export LDFLAGS="-L/opt/extra/lib $LDFLAGS"
       export PKG_CONFIG_PATH=/opt/extra/lib/pkgconfig:$PKG_CONFIG_PATH
       ;;
-    "trunk" )
-      BASE_DIR=$HOME/build-trunk
-
-      export PATH=$BASE_DIR/bin:$PATH
-      export PKG_CONFIG_PATH=$BASE_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
-      export CXXFLAGS="-stdlib=libc++ -I$BASE_DIR/include -isystem $LIBCXX_INCLUDE_DIR ${CXXFLAGS}"
-      export LDFLAGS="-L$BASE_DIR/lib -L$BASE_DIR/lib/darwin ${LDFLAGS}"
-      export DYLD_FALLBACK_LIBRARY_PATH=$BASE_DIR/lib:$BASE_DIR/lib/darwin:$DYLD_FALLBACK_LIBRARY_PATH
-      export ASAN_SYMBOLIZER_PATH=$BASE_DIR/bin/llvm-symbolizer
-      ;;
     "clang" )
       BASE_DIR=$HOME/build
 
@@ -37,7 +27,7 @@ while [ $# -ge 1 ]; do
       export CXXFLAGS="-stdlib=libc++ -I$BASE_DIR/include -isystem $LIBCXX_INCLUDE_DIR ${CXXFLAGS}"
       export LDFLAGS="-L$BASE_DIR/lib ${LDFLAGS}"
       export DYLD_FALLBACK_LIBRARY_PATH=$BASE_DIR/lib:$BASE_DIR/lib/clang/3.5.1/lib/darwin:$DYLD_FALLBACK_LIBRARY_PATH
-      export ASAN_SYMBOLIZER_PATH=$BASE_DIR/bin/llvm-symbolizer
+      unset ASAN_SYMBOLIZER_PATH
       ;;
     "clang2" )
       BASE_DIR=$HOME/build2

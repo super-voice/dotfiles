@@ -41,19 +41,11 @@ export ASAN_SYMBOLIZER_PATH=/usr/local/bin/llvm-symbolizer-3.5
 #export ASAN_OPTIONS="verbosity=3:malloc_context_size=30:log_path=$HOME/.asan/asan:color=never"
 export ASAN_OPTIONS="verbosity=0:malloc_context_size=30:abort_on_error=1:color=always"
 
-# Nacl-related
-export PATH="$HOME/nacl_sdk:$PATH"
-
 # Java-related
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_72.jdk/Contents/Home"
 export JAVA_OPTS="-Dfile.encoding=UTF-8 -XX:MaxPermSize=256m"
 export _JAVA_OPTIONS="-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080"
 export PATH="$JAVA_HOME/bin:$PATH"
-
-# Android-related
-export ANDROID_HOME="$HOME/android-sdk"
-export ANDROID_NDK_HOME="$HOME/android-ndk"
-export PATH="$ANDROID_NDK_HOME:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$PATH"
 
 # Python-related
 export PYTHONPATH="$HOME/Library/Python/2.7/lib/python2.7/site-packages"
@@ -75,6 +67,5 @@ export PATH="$CABAL_BASE:$PATH"
 export HOMEBREW_BUILD_FROM_SOURCE=YES
 
 # Other
-export PATH="$HOME/.cov-analysis/bin:$PATH"
 export PATH="$HOME/arcanist/bin:$PATH"
 export PATH="$PATH:$HOME/depot_tools"
