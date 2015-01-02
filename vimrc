@@ -297,10 +297,10 @@ endif
 
 " Sets a font for the GUI
 if has("gui_gtk2")
-  set guifont=Consolas\ 17
+  set guifont=Consolas\ Bold\ 9
 elseif has("gui_macvim")
   " My Mac has a fairly high DPI so the font needs to be bigger
-  set guifont=Monaco:h14
+  set guifont=Monaco:h12
 elseif has("gui_win32")
   set guifont=Consolas:h17
 end
