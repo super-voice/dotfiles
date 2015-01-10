@@ -429,6 +429,7 @@ let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
+let g:ycm_collect_identifiers_from_tags_files = 1
 nnoremap <leader>y :YcmForceCompileAndDiagnostics<CR>
 nnoremap <leader>pg :YcmCompleter GoTo<CR>
 nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>

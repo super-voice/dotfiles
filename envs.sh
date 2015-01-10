@@ -35,7 +35,7 @@ while [ $# -ge 1 ]; do
       export CC=clang
       export CXX=clang++
       export PATH=$BASE_DIR/bin:$PATH
-      export DYLD_FALLBACK_LIBRARY_PATH=$BASE_DIR/lib:$BASE_DIR/lib/clang/3.6.0/lib/darwin:$DYLD_FALLBACK_LIBRARY_PATH
+      export DYLD_FALLBACK_LIBRARY_PATH=$BASE_DIR/lib:$BASE_DIR/lib/clang/3.6.0/lib/darwin:/usr/local/lib:/usr/lib
       unset ASAN_SYMBOLIZER_PATH
       ;;
 
@@ -71,7 +71,7 @@ while [ $# -ge 1 ]; do
       ;;
     *)
       echo "unknown argument"
-      exit -1
+      break
   esac
   shift
 done
