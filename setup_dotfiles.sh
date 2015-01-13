@@ -7,14 +7,9 @@ PWD=$(dirname "${BASH_SOURCE[0]}")
 #Platform
 PLATFORM=$(uname -s)
 
-if [[ ! -a ~/.zshrc ]]
+if [[ ! -a ~/.bashrc ]]
 then
-  ln -sv $PWD/zshrc ~/.zshrc
-fi
-
-if [[ ! -a ~/.oh-my-zsh ]]
-then
-  git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+  ln -sv $PWD/bashrc ~/.bashrc
 fi
 
 if [[ ! -a ~/.vimrc ]]

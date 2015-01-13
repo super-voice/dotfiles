@@ -1,18 +1,3 @@
-# oh-my-zsh
-export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="ys"
-CASE_SENSITIVE="true"
-DISABLE_AUTO_UPDATE="true"
-# DISABLE_LS_COLORS="true"
-DISABLE_AUTO_TITLE="true"
-# ENABLE_CORRECTION="true"
-COMPLETION_WAITING_DOTS="true"
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-HIST_STAMPS="mm/dd/yyyy"
-# ZSH_CUSTOM=/path/to/new-custom-folder
-plugins=(git osx brew)
-source $ZSH/oh-my-zsh.sh
-
 # Editor-related
 set -o vi
 export VISUAL=/usr/local/bin/vim
@@ -25,7 +10,7 @@ export LC_ALL=en_US.UTF-8
 
 # Aliases-related
 export LESS=' -R '
-alias ls='ls -G'
+alias ls='gls --color=auto'
 alias ll='ls -h1'
 alias ldd='otool -L'
 
