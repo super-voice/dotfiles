@@ -9,6 +9,7 @@ call vundle#rc()
 "
 " original repos on github
 Plugin 'gmarik/vundle'
+Plugin 'Shougo/vimproc.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
@@ -22,16 +23,15 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'eraserhd/vim-ios'
-Plugin 'wincent/Command-T'
 Plugin 'helino/vim-json'
 Plugin 'othree/eregex.vim'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'rhysd/vim-clang-format'
-"Plugin 'jaxbot/github-issues.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'jimenezrick/vimerl'
 Plugin 'wting/rust.vim'
 Plugin 'rking/ag.vim'
+Plugin 'kien/ctrlp.vim'
 
 " Plugin 'airblade/vim-gitgutter.git'
 " vim-scripts repos

@@ -54,3 +54,6 @@ export HOMEBREW_BUILD_FROM_SOURCE=YES
 # Other
 export PATH="$HOME/arcanist/bin:$PATH"
 export PATH="$PATH:$HOME/depot_tools"
+
+. /usr/local/etc/bash_completion.d/git-completion.bash
+. /usr/local/etc/bash_completion.d/git-prompt.sh
