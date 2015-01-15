@@ -421,11 +421,21 @@ let g:user_zen_leader_key = '<c-b>'
 let g:user_zen_settings = {
       \  'indentation' : '  '
       \}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" syntastic "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" fugitive "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd QuickFixCmdPost *grep* cwindow
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ycm "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
@@ -434,16 +444,27 @@ nnoremap <leader>y :YcmForceCompileAndDiagnostics<CR>
 nnoremap <leader>pg :YcmCompleter GoTo<CR>
 nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" clang-format "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>t :!ctags -R --languages=C,C++ --fields=+l --exclude=.git --exclude=build --exclude=out --verbose<CR>
 let g:clang_format#code_style = 'llvm'
 let g:clang_format#style_options = {
             \ "Standard" : "C++11" }
+au FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+au FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" shortcuts "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>p :r !xclip -o<CR>
+nnoremap <leader>s :w !sudo tee %<CR>
+nnoremap <leader>t :!objctags -R --verbose<CR>
+nnoremap <leader>T :!ctags -R --languages=C,C++ --fields=+l --exclude=.git --exclude=build --exclude=out --verbose<CR>
+" Toggles '/' to mean eregex search or normal Vim search
+nnoremap <leader>/ :call eregex#toggle()<CR>
+
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 7
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'tomorrow'
-au FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-au FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 let g:eregex_default_enable = 0
-" Toggles '/' to mean eregex search or normal Vim search
-nnoremap <leader>/ :call eregex#toggle()<CR>
