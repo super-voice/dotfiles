@@ -33,6 +33,7 @@ Plugin 'wting/rust.vim'
 Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'FelikZ/ctrlp-py-matcher'
+" Plugin 'edkolev/tmuxline.vim'
 
 " Plugin 'airblade/vim-gitgutter.git'
 " vim-scripts repos
