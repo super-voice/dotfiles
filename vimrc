@@ -32,6 +32,7 @@ Plugin 'jimenezrick/vimerl'
 Plugin 'wting/rust.vim'
 Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
+Plugin 'FelikZ/ctrlp-py-matcher'
 
 " Plugin 'airblade/vim-gitgutter.git'
 " vim-scripts repos
@@ -411,21 +412,7 @@ vnoremap <Leader>a/ :Tabularize /\/\//l2c1l0<CR>
 nnoremap <Leader>a, :Tabularize /,/l0r1<CR>
 vnoremap <Leader>a, :Tabularize /,/l0r1<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                              vim-css-color                              "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let g:cssColorVimDoNotMessMyUpdatetime = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                              zencoding-vim                              "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let g:user_zen_leader_key = '<c-b>'
-let g:user_zen_settings = {
-      \  'indentation' : '  '
-      \}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" syntastic "
+"                              syntastic                                  "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
@@ -437,7 +424,30 @@ let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd QuickFixCmdPost *grep* cwindow
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ycm "
+"                             CtrlP                                       "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ " Set delay to prevent extra search
+let g:ctrlp_lazy_update = 350
+" Do not clear filenames cache, to improve CtrlP startup
+" You can manualy clear it by <F5>
+let g:ctrlp_clear_cache_on_exit = 0
+" Set no file limit, we are building a big project
+let g:ctrlp_max_files = 0
+" If ag is available use it as filename list generator instead of 'find'
+if executable("ag")
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --hidden -g ""'
+endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                       PyMatcher for CtrlP                               "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if !has('python')
+  echo 'In order to use pymatcher plugin, you need +python compiled vim'
+else
+  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               ycm                                       "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_min_num_of_chars_for_completion = 1
@@ -470,4 +480,5 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 7
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'tomorrow'
+let g:airline#extensions#tabline#enabled = 1
 let g:eregex_default_enable = 0
