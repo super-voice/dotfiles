@@ -15,7 +15,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'godlygeek/tabular'
 Plugin 'tomtom/tlib_vim'
-Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 Plugin 'Chilledheart/YouCompleteMe'
@@ -234,7 +233,7 @@ if has("gui_macvim")
   endfor
 endif
 
-if has('unnamedplus')
+if has("unnamedplus")
   " By default, Vim will not use the system clipboard when yanking/pasting to
   " the default register. This option makes Vim use the system default
   " clipboard.
