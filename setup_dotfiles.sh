@@ -50,9 +50,15 @@ fi
 mkdir -pv $HOME/bin
 mkdir -pv $HOME/.go
 mkdir -pv $HOME/.gems
-mkdir -pv $HOME/.vim/syntax
+mkdir -pv $HOME/.vim
 
-cp -fv $PWD/vim/*.vim $HOME/.vim/syntax/
+if [ ! -d ~/.vim/syntax ]; then
+  ln -sv $PWD/syntax $HOME/.vim/syntax
+fi
+
+if [ ! -d ~/.vim/ftdetect ]; then
+  ln -sv $PWD/ftdetect $HOME/.vim/ftdetect
+fi
 
 . $PWD/gitconfig_setup.sh
 

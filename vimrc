@@ -67,6 +67,9 @@ augroup filetype
   au! BufRead,BufNewFile *.td     set filetype=tablegen
   au! BufRead,BufNewFile *.rst    set filetype=rest
   au! BufRead,BufNewFile *.proto  set filetype=proto
+  au! BufRead,BufNewFile *.gyp    set filetype=python expandtab tabstop=2 shiftwidth=2
+  au! BufRead,BufNewFile *.gypi   set filetype=python expandtab tabstop=2 shiftwidth=2
+  au! BufRead,BufNewFile DEPS     set filetype=python expandtab tabstop=2 shiftwidth=2
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
