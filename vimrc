@@ -72,6 +72,7 @@ augroup filetype
   au! BufRead,BufNewFile *.gyp    set filetype=python expandtab tabstop=2 shiftwidth=2
   au! BufRead,BufNewFile *.gypi   set filetype=python expandtab tabstop=2 shiftwidth=2
   au! BufRead,BufNewFile DEPS     set filetype=python expandtab tabstop=2 shiftwidth=2
+  au! BufRead,BufNewFile .tmux.conf*,tmux.conf* set filetype=tmux
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
