@@ -57,3 +57,5 @@ git config --global core.autocrlf input
 
 git config --global core.excludesfile ~/.gitignore_global
 
+git config --global svn.addAuthorFrom true
+git config --global svn.useLogAuthor true
