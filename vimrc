@@ -383,9 +383,9 @@ au vimrc BufReadCmd *.epub call zip#Browse( expand( "<amatch>" ) )
 
 let g:tagbar_left = 1
 let g:tagbar_sort = 0
-let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+let g:tagbar_ctags_bin = '/opt/local/bin/ctags'
 if has("gui_macvim")
-  let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+  let g:tagbar_ctags_bin = '/opt/local/bin/ctags'
 endif
 
 nnoremap <F4> :TagbarToggle<cr><c-w>=
