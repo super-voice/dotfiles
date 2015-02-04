@@ -23,7 +23,7 @@ export ACLOCAL_PATH=$HOME/share/aclocal:/usr/local/share/aclocal:/opt/local/shar
 # Toolchain-related
 APPLE_TOOLCHAIN_DIR="/Library/Developer/CommandLineTools/usr/bin"
 MACPORTS_TOOLCHAIN_DIR="/opt/local/bin"
-CUSTOM_TOOLCHAIN_DIR=$HOME/build/bin
+CUSTOM_TOOLCHAIN_DIR=$HOME/build-rel/bin
 export CC=clang
 export CXX=clang++
 export PATH=$CUSTOM_TOOLCHAIN_DIR:$MACPORTS_TOOLCHAIN_DIR:$APPLE_TOOLCHAIN_DIR:$PATH

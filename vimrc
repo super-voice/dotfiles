@@ -461,19 +461,18 @@ nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " clang-format "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>t :!ctags -R --languages=C,C++ --fields=+l --exclude=.git --exclude=build --exclude=out --verbose<CR>
 let g:clang_format#code_style = 'llvm'
 let g:clang_format#style_options = {
             \ "Standard" : "C++11" }
-au FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-au FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " shortcuts "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>p :r !xclip -o<CR>
 nnoremap <leader>s :w !sudo tee %<CR>
-nnoremap <leader>t :!objctags -R --verbose<CR>
-nnoremap <leader>T :!ctags -R --languages=C,C++ --fields=+l --exclude=.git --exclude=build --exclude=out --verbose<CR>
+nnoremap <leader>t :!ctags -R --languages=C,C++ --fields=+l --exclude=.git --exclude=build --exclude=out --verbose<CR>
+nnoremap <leader>T :!objctags -R --verbose<CR>
 " Toggles '/' to mean eregex search or normal Vim search
 nnoremap <leader>/ :call eregex#toggle()<CR>
 
