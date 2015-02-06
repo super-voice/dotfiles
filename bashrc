@@ -12,7 +12,6 @@ export LC_ALL=en_US.UTF-8
 export LESS=' -R '
 alias ls='gls --color=auto'
 alias ll='ls -h1'
-alias ldd='otool -L'
 
 # Pkg manager-related
 export PATH=$HOME/bin:/usr/local/bin:$/usr/local/sbin:/opt/local/bin:$PATH
