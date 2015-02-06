@@ -53,6 +53,7 @@ export PATH="$CABAL_BASE:$PATH"
 # Other
 export PATH="$HOME/arcanist/bin:$PATH"
 export PATH="$PATH:$HOME/depot_tools"
+export LESS="-R"
 
 # Completion
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
