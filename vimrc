@@ -302,7 +302,9 @@ endif
 
 " Sets a font for the GUI
 if has("gui_gtk2")
-  set guifont=Consolas\ Bold\ 9
+  " My Mac has running gnome3 with scale factor 2.0
+  " set font to the same as kmscon setup is good enough
+  set guifont=Consolas\ Regular\ 10
 elseif has("gui_macvim")
   " My Mac has a fairly high DPI so the font needs to be bigger
   set guifont=Monaco:h12

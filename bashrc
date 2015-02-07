@@ -14,7 +14,7 @@ alias ls='gls --color=auto'
 alias ll='ls -h1'
 
 # Pkg manager-related
-export PATH=$HOME/bin:/usr/local/bin:$/usr/local/sbin:/opt/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$/usr/local/sbin:/opt/local/bin:/opt/local/sbin:$PATH
 export PKG_CONFIG_PATH=$HOME/lib/pkgconfig:/usr/local/lib/pkgconfig:/opt/local/lib/pkgconfig:/usr/lib/pkgconfig
 export ACLOCAL_PATH=$HOME/share/aclocal:/usr/local/share/aclocal:/opt/local/share/aclocal
 
