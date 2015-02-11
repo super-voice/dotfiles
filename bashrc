@@ -26,7 +26,6 @@ CUSTOM_TOOLCHAIN_DIR=$HOME/build-rel/bin
 export CC=clang
 export CXX=clang++
 export PATH=$CUSTOM_TOOLCHAIN_DIR:$MACPORTS_TOOLCHAIN_DIR:$APPLE_TOOLCHAIN_DIR:$PATH
-
 export ARCHFLAGS="-Wno-error=unused-command-line-argument"
 
 # Sanitizer-related
@@ -42,7 +41,7 @@ export GEM_HOME=$HOME/.gems
 export PATH="$GEM_HOME/bin:$PATH"
 
 # Go-related
-export GOPATH=$HOME/.go
+export GOPATH=$HOME/.go:/usr/local/go
 export PATH="$GOPATH/bin:$PATH"
 
 # Haskell-related

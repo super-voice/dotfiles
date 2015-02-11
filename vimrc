@@ -468,6 +468,8 @@ let g:clang_format#style_options = {
             \ "Standard" : "C++11" }
 au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
+au FileType go nnoremap <buffer><Leader>cf :<C-u>!gofmt -w=true % <CR>
+"au FileType go vnoremap <buffer><Leader>cf :!gofmt % <CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " shortcuts "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
