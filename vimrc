@@ -25,7 +25,6 @@ Plugin 'eraserhd/vim-ios'
 Plugin 'helino/vim-json'
 Plugin 'othree/eregex.vim'
 Plugin 'nanotech/jellybeans.vim'
-Plugin 'rhysd/vim-clang-format'
 Plugin 'rizzatti/dash.vim'
 Plugin 'jimenezrick/vimerl'
 Plugin 'wting/rust.vim'
@@ -461,13 +460,13 @@ nnoremap <leader>pg :YcmCompleter GoTo<CR>
 nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" clang-format "
+" clang_format "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:clang_format#code_style = 'llvm'
-let g:clang_format#style_options = {
+let g:clang_format_style = {
+            \ "BasedOnStyle" : "llvm",
             \ "Standard" : "C++11" }
-au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
+au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :<C-u>pyf ~/dotfiles/clang-format.py<CR>
+au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :pyf ~/dotfiles/clang-format.py<CR>
 au FileType go nnoremap <buffer><Leader>cf :<C-u>!gofmt -w=true % <CR>
 "au FileType go vnoremap <buffer><Leader>cf :!gofmt % <CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
