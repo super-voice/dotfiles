@@ -57,3 +57,6 @@ export LESS="-R"
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
   . /opt/local/etc/profile.d/bash_completion.sh
 fi
+
+# When the shell exits, append to the history file instead of overwriting it
+shopt -s histappend
