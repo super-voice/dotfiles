@@ -22,10 +22,10 @@ export ACLOCAL_PATH=$HOME/share/aclocal:/usr/local/share/aclocal:/opt/local/shar
 # Toolchain-related
 APPLE_TOOLCHAIN_DIR="/Library/Developer/CommandLineTools/usr/bin"
 MACPORTS_TOOLCHAIN_DIR="/opt/local/bin"
-CUSTOM_TOOLCHAIN_DIR=$HOME/build-rel/bin
+CUSTOM_TOOLCHAIN_DIR="$HOME/build-rel/bin"
 export CC=clang
 export CXX=clang++
-export PATH=$CUSTOM_TOOLCHAIN_DIR:$MACPORTS_TOOLCHAIN_DIR:$APPLE_TOOLCHAIN_DIR:$PATH
+export PATH="$CUSTOM_TOOLCHAIN_DIR:$HOME/build-fallback/bin:$MACPORTS_TOOLCHAIN_DIR:$APPLE_TOOLCHAIN_DIR:$PATH"
 export ARCHFLAGS="-Wno-error=unused-command-line-argument"
 
 # Sanitizer-related
@@ -43,10 +43,6 @@ export PATH="$GEM_HOME/bin:$PATH"
 # Go-related
 export GOPATH=$HOME/.go:/usr/local/go
 export PATH="$GOPATH/bin:$PATH"
-
-# Haskell-related
-CABAL_BASE=$HOME/.cabal/bin
-export PATH="$CABAL_BASE:$PATH"
 
 # Other
 export PATH="$HOME/arcanist/bin:$PATH"
