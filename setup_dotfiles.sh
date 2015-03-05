@@ -47,6 +47,10 @@ then
   ln -sv $PWD/cgdbrc ~/.cgdbrc
 fi
 
+if [ ! -d ~/.lldbinit ]; then
+  ln -sv $PWD/lldbinit $HOME/.lldbinit
+fi
+
 mkdir -pv $HOME/bin
 mkdir -pv $HOME/.go
 mkdir -pv $HOME/.gems
