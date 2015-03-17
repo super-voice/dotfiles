@@ -1,4 +1,4 @@
-#!/usr/bin/env /bash
+#!/usr/bin/env bash
 
 set -e
 
@@ -15,11 +15,6 @@ fi
 if [[ ! -a ~/.vimrc ]]
 then
   ln -sv $PWD/vimrc ~/.vimrc
-fi
-
-if [[ ! -a ~/envs.sh ]]
-then
-  ln -sv $PWD/envs.sh ~/envs.sh
 fi
 
 if [[ ! -a ~/.ycm_extra_conf.py ]]
