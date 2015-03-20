@@ -460,9 +460,7 @@ nnoremap <leader>j :YcmCompleter GoTo<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " clang_format "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:clang_format_style = {
-            \ "BasedOnStyle" : "llvm",
-            \ "Standard" : "C++11" }
+let g:clang_format_fallback_style = 'llvm'
 au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :<C-u>pyf ~/dotfiles/clang-format.py<CR>
 au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :pyf ~/dotfiles/clang-format.py<CR>
 au FileType go nnoremap <buffer><Leader>cf :<C-u>!gofmt -w=true % <CR>
