@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # this part comes from
 # https://github.com/holman/dotfiles/blob/master/osx/set-defaults.sh

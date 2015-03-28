@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 git config --global user.name "Chilledheart"
 git config --global user.email "rwindz0@gmail.com"
