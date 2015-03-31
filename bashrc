@@ -33,7 +33,7 @@ export ARCHFLAGS="-Wno-error=unused-command-line-argument"
 export ASAN_OPTIONS="verbosity=0:malloc_context_size=30:abort_on_error=1:color=always"
 
 # Python-related
-export PYTHONPATH="$HOME/Library/Python/2.7/lib/python2.7/site-packages"
+export PYTHONPATH="$HOME/Library/Python/2.7/lib/python2.7/site-packages:/usr/local/lib/python2.7/site-packages"
 export PATH="$HOME/Library/Python/2.7/bin:$PATH"
 
 # Ruby-related
@@ -56,3 +56,6 @@ fi
 
 # When the shell exits, append to the history file instead of overwriting it
 shopt -s histappend
+
+# Write bash history after each command
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
