@@ -24,7 +24,9 @@ if __name__ == '__main__':
         stdout.write('%.1f/%.1fM' % (vm.used/1024/1024, vm.total/1024/1024))
     elif sys.argv[1] == 'cpu':
         # print cpu usage
-        stdout.write('%.2f%%' % psutil.cpu_percent())
+        cpus_usage = psutil.cpu_percent(interval=0.10, percpu=True)
+        for cpu_usage in cpus_usage:
+            stdout.write('%6.1f%%' % cpu_usage)
     elif sys.argv[1] == 'uptime':
         # print uptime
         uptime = datetime.fromtimestamp(time.time()) - datetime.fromtimestamp(psutil.boot_time())
