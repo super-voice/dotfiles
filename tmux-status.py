@@ -52,9 +52,9 @@ if __name__ == '__main__':
         stdout.write('%.1f/%.1fM' % (vm.used/1024/1024, vm.total/1024/1024))
     elif sys.argv[1] == 'cpu':
         # print cpu usage
-        cpus_usage = psutil.cpu_percent(interval=0.10, percpu=True)
-        for cpu_usage in cpus_usage:
-            stdout.write('%6.1f%%' % cpu_usage)
+        cpu_usage = psutil.cpu_percent(interval=0.10, percpu=False)
+        cpu_count = psutil.cpu_count();
+        stdout.write('%5.2f%% x %d' % (cpu_usage, cpu_count))
     elif sys.argv[1] == 'battery':
         stdout.write(get_battery_capacity())
     elif sys.argv[1] == 'uptime':
