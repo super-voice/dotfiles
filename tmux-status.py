@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # 2885/7987MB 51.2% 2.11% 2.35% 2.44% <uptime> <current date>
-import psutil,time,sys,os
+import psutil,time,sys,os,re
+import subprocess
 from datetime import datetime
 from sys import stdout
 
@@ -37,11 +38,18 @@ def get_battery_capacity():
 
     if ac_online:
         return 'Power Connected'
-    else:
-        return 'Capacity %s%%' % capacity
+
+    return 'Capacity %s%%' % capacity
 
 def get_battery_capacity_darwin():
-    return 'Capacity N/A'
+    command = subprocess.Popen(['/usr/bin/pmset', '-g', 'batt'], stdout=subprocess.PIPE, shell = False)
+    pmset_output, _ = command.communicate()
+    if pmset_output.find('AC Power') >= 0:
+        return 'Power Connected'
+
+    capacity_match  = re.search(r'\t([0-9]{1,3})%;', pmset_output)
+    capacity = capacity_match.group(1)
+    return 'Capacity %s%%' % capacity
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
