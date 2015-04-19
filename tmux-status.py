@@ -53,7 +53,7 @@ def get_battery_capacity_darwin():
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        1#nothing
+        pass#nothing
     elif sys.argv[1] == 'vm':
         # print memory usage
         vm = psutil.virtual_memory()
