@@ -194,7 +194,7 @@ endif
 set iskeyword+=_,$,@,%,#
 
 " Number of screen lines to use for the command-line
-set cmdheight=2
+" set cmdheight=2
 
 " allow backspace and cursor keys to cross line boundaries
 set whichwrap+=<,>,h,l
