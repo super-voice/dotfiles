@@ -31,6 +31,7 @@ Plugin 'wting/rust.vim'
 Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'FelikZ/ctrlp-py-matcher'
+Plugin 'dleonard0/pony-vim-syntax'
 " Plugin 'edkolev/tmuxline.vim'
 
 " Plugin 'airblade/vim-gitgutter.git'
@@ -71,6 +72,7 @@ augroup filetype
   au! BufRead,BufNewFile *.gypi   set filetype=python expandtab tabstop=2 shiftwidth=2
   au! BufRead,BufNewFile DEPS     set filetype=python expandtab tabstop=2 shiftwidth=2
   au! BufRead,BufNewFile .tmux.conf*,tmux.conf* set filetype=tmux
+  au! BufRead,BufNewFile *.pony set filetype=pony
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
