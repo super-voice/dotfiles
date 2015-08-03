@@ -1,7 +1,7 @@
 # Editor-related
 set -o vi
-export VISUAL=/opt/local/bin/vim
-export EDITOR=/opt/local/bin/vim
+export VISUAL=/usr/local/bin/vim
+export EDITOR=/usr/local/bin/vim
 
 # Locale-related
 export LANG=en_US.UTF-8
@@ -14,14 +14,15 @@ alias ls='gls --color=auto'
 alias ll='ls -h1'
 
 # Pkg manager-related
-export PATH=$HOME/bin:/usr/local/bin:$/usr/local/sbin:/opt/local/bin:/opt/local/sbin:$PATH
-export PKG_CONFIG_PATH=$HOME/lib/pkgconfig:/usr/local/lib/pkgconfig:/opt/local/lib/pkgconfig:/usr/lib/pkgconfig
-export ACLOCAL_PATH=$HOME/share/aclocal:/usr/local/share/aclocal:/opt/local/share/aclocal
+export PATH=$HOME/bin:/usr/local/bin:$/usr/local/sbin:$PATH
+export PKG_CONFIG_PATH=$HOME/lib/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/pkgconfig
+export ACLOCAL_PATH=$HOME/share/aclocal:/usr/local/share/aclocal
+export HOMEBREW_BUILD_FROM_SOURCE=YES
 
 # Compiler-related
 # Toolchain-related
 APPLE_TOOLCHAIN_DIR="/Library/Developer/CommandLineTools/usr/bin"
-MACPORTS_TOOLCHAIN_DIR="/opt/local/bin"
+MACPORTS_TOOLCHAIN_DIR="/usr/local/bin"
 CUSTOM_TOOLCHAIN_DIR="$HOME/build-rel/bin"
 export CC=clang
 export CXX=clang++
@@ -37,7 +38,7 @@ export PYTHONPATH="$HOME/Library/Python/2.7/lib/python2.7/site-packages:/usr/loc
 export PATH="$HOME/Library/Python/2.7/bin:$PATH"
 
 # Ruby-related
-export GEM_HOME=$HOME/.gems
+export GEM_HOME=$HOME/.gem
 export PATH="$GEM_HOME/bin:$PATH"
 
 # Go-related
@@ -50,8 +51,8 @@ export PATH="$PATH:$HOME/depot_tools"
 export LESS="-R"
 
 # Completion
-if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
-  . /opt/local/etc/profile.d/bash_completion.sh
+if [ -f /usr/local/etc/bash_completion ]; then
+  . /usr/local/etc/bash_completion
 fi
 
 # When the shell exits, append to the history file instead of overwriting it

@@ -21,7 +21,6 @@ Plugin 'Chilledheart/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'eraserhd/vim-ios'
 Plugin 'helino/vim-json'
 Plugin 'othree/eregex.vim'
 Plugin 'nanotech/jellybeans.vim'
@@ -386,9 +385,9 @@ au vimrc BufReadCmd *.epub call zip#Browse( expand( "<amatch>" ) )
 
 let g:tagbar_left = 1
 let g:tagbar_sort = 0
-let g:tagbar_ctags_bin = '/opt/local/bin/ctags'
+let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 if has("gui_macvim")
-  let g:tagbar_ctags_bin = '/opt/local/bin/ctags'
+  let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 endif
 
 nnoremap <F4> :TagbarToggle<cr><c-w>=
@@ -456,6 +455,7 @@ endif
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
+let g:ycm_confirm_extra_conf = 0
 let g:ycm_collect_identifiers_from_tags_files = 0
 nnoremap <leader>y :YcmForceCompileAndDiagnostics<CR>
 nnoremap <leader>j :YcmCompleter GoTo<CR>
