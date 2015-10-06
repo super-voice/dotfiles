@@ -293,6 +293,8 @@ else
   " itself.
   if !has("gui_macvim")
     au vimrc GUIEnter * set lines=999 columns=999
+  else
+    au vimrc GUIEnter * set lines=80 columns=150
   endif
 endif
 

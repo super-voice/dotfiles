@@ -1,3 +1,4 @@
 settings set stop-line-count-before 7
 settings set stop-line-count-after 5
 settings set stop-disassembly-count 20
+command script import /usr/local/opt/chisel/libexec/fblldb.py

@@ -57,7 +57,7 @@ if __name__ == '__main__':
     elif sys.argv[1] == 'vm':
         # print memory usage
         vm = psutil.virtual_memory()
-        stdout.write('%.1f/%.1fM' % (vm.used/1024/1024, vm.total/1024/1024))
+        stdout.write('%.1f/%.1fM' % (vm.active/1024/1024, vm.total/1024/1024))
     elif sys.argv[1] == 'cpu':
         # print cpu usage
         cpu_usage = psutil.cpu_percent(interval=0.10, percpu=False)

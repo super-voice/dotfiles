@@ -24,14 +24,16 @@ export HOMEBREW_BUILD_FROM_SOURCE=YES
 APPLE_TOOLCHAIN_DIR="/Library/Developer/CommandLineTools/usr/bin"
 MACPORTS_TOOLCHAIN_DIR="/usr/local/bin"
 CUSTOM_TOOLCHAIN_DIR="$HOME/build-rel/bin"
+XCODE_TOOLS_DIR="/Applications/Xcode.app/Contents/SharedFrameworks/DTDeviceKitBase.framework/Versions/A/Resources"
 export CC=clang
 export CXX=clang++
-export PATH="$CUSTOM_TOOLCHAIN_DIR:$HOME/build-fallback/bin:$MACPORTS_TOOLCHAIN_DIR:$APPLE_TOOLCHAIN_DIR:$PATH"
+export PATH="$CUSTOM_TOOLCHAIN_DIR:$HOME/build-fallback/bin:$MACPORTS_TOOLCHAIN_DIR:$APPLE_TOOLCHAIN_DIR:$PATH:$XCODE_TOOLS_DIR"
 export ARCHFLAGS="-Wno-error=unused-command-line-argument"
 
 # Sanitizer-related
 #export ASAN_OPTIONS="verbosity=3:malloc_context_size=30:log_path=$HOME/.asan/asan:color=never"
 export ASAN_OPTIONS="verbosity=0:malloc_context_size=30:abort_on_error=1:color=always"
+export GTEST_BREAK_ON_FAILURE=1
 
 # Python-related
 export PYTHONPATH="$HOME/Library/Python/2.7/lib/python2.7/site-packages:/usr/local/lib/python2.7/site-packages"
