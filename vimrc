@@ -17,7 +17,6 @@ Plugin 'godlygeek/tabular'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
-Plugin 'Chilledheart/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -31,6 +30,7 @@ Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'dleonard0/pony-vim-syntax'
+Plugin 'Chilledheart/vim-wdc'
 " Plugin 'edkolev/tmuxline.vim'
 
 " Plugin 'airblade/vim-gitgutter.git'
@@ -452,15 +452,12 @@ else
   let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                               ycm                                       "
+"                               wdc                                       "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_show_diagnostics_ui = 1
-let g:ycm_min_num_of_chars_for_completion = 1
-let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_collect_identifiers_from_tags_files = 0
-nnoremap <leader>y :YcmForceCompileAndDiagnostics<CR>
-nnoremap <leader>j :YcmCompleter GoTo<CR>
+au FileType c,cpp,objc,objcpp nnoremap <leader>y :WdcForceCompile<CR>
+au FileType c,cpp,objc,objcpp nnoremap <leader>j :WdcGotoDefinition<CR>
+au FileType c,cpp,objc,objcpp nnoremap <leader>d :WdcShowDetailedDiagnostic<CR>
+au FileType c,cpp,objc,objcpp nnoremap <leader>c :WdcShowCursorDetail<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " clang_format "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
