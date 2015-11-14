@@ -455,7 +455,8 @@ endif
 "                               wdc                                       "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>y :WdcForceCompile<CR>
-nnoremap <leader>j :WdcGotoDeclaration<CR>
+nnoremap <leader>j :WdcGotoDefinition<CR>
+nnoremap <leader>d :WdcShowCursorDetail<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " clang_format "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
