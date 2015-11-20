@@ -31,9 +31,11 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'dleonard0/pony-vim-syntax'
 Plugin 'Chilledheart/vim-wdc'
+Plugin 'davidhalter/jedi-vim'
 " Plugin 'edkolev/tmuxline.vim'
 
-" Plugin 'airblade/vim-gitgutter.git'
+Plugin 'airblade/vim-gitgutter.git'
+" Plugin 'Xuyuanp/nerdtree-git-plugin'
 " vim-scripts repos
 Plugin 'L9'
 " non github repos
@@ -71,7 +73,8 @@ augroup filetype
   au! BufRead,BufNewFile *.gypi   set filetype=python expandtab tabstop=2 shiftwidth=2
   au! BufRead,BufNewFile DEPS     set filetype=python expandtab tabstop=2 shiftwidth=2
   au! BufRead,BufNewFile .tmux.conf*,tmux.conf* set filetype=tmux
-  au! BufRead,BufNewFile *.pony set filetype=pony
+  au! BufRead,BufNewFile *.pony   set filetype=pony
+  au! BufRead,BufNewFile *.fbs    set filetype=flatbuffers
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -123,7 +126,7 @@ set magic               " change the way backslashes are used in search patterns
 set bs=indent,eol,start " Allow backspacing over everything in insert mode
 set nobackup            " no backup~ files.
 
-set tabstop=4           " number of spaces a tab counts for
+set tabstop=2           " number of spaces a tab counts for
 set shiftwidth=2        " spaces for autoindents
 set softtabstop=2
 set shiftround          " makes indenting a multiple of shiftwidth
@@ -135,7 +138,7 @@ set noshowmode          " don't show the mode ("-- INSERT --") at the bottom
 set fileformat=unix     " file mode is unix
 set fileformats=unix,dos,mac   " detects unix, dos, mac file formats in that order
 
-set viminfo='20,\"500   " remember copy registers after quitting in the .viminfo
+set viminfo='20,\"1000   " remember copy registers after quitting in the .viminfo
 " file -- 20 jump links, regs up to 500 lines'
 
 set hidden              " allows making buffers hidden even with unsaved changes
@@ -260,6 +263,11 @@ autocmd vimrc FileType javascript
       \ set shiftwidth=2 |
       \ set softtabstop=2
 
+autocmd vimrc FileType python
+      \ set tabstop=2 |
+      \ set shiftwidth=2 |
+      \ set softtabstop=2
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           More involved tweaks                          "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -277,7 +285,7 @@ endif
 augroup vimrc
 " Automatically delete trailing DOS-returns and whitespace on file open and
 " write.
-  "autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
+  autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
 augroup END
 
 nnoremap <leader>w :silent! %s/[\r \t]\+$//<CR>
@@ -289,13 +297,7 @@ if has("gui_win32")
   " this maximizes on windows
   au vimrc GUIEnter * simalt ~x
 else
-  " We never maximize in macvim. We rely on it remembering the window size
-  " itself.
-  if !has("gui_macvim")
-    au vimrc GUIEnter * set lines=999 columns=999
-  else
-    au vimrc GUIEnter * set lines=80 columns=150
-  endif
+  au vimrc GUIEnter * set lines=999 columns=999
 endif
 
 if has("autocmd")
@@ -380,7 +382,6 @@ autocmd vimrc FileType markdown setlocal spell! spelllang=en_us
 au vimrc BufReadCmd *.epub call zip#Browse( expand( "<amatch>" ) )
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                tagbar                                   "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -458,6 +459,11 @@ au FileType c,cpp,objc,objcpp nnoremap <leader>y :WdcForceCompile<CR>
 au FileType c,cpp,objc,objcpp nnoremap <leader>j :WdcGotoDefinition<CR>
 au FileType c,cpp,objc,objcpp nnoremap <leader>d :WdcShowDetailedDiagnostic<CR>
 au FileType c,cpp,objc,objcpp nnoremap <leader>c :WdcShowCursorDetail<CR>
+nnoremap <leader>ws :WdcStartServer<CR>
+nnoremap <leader>wd :WdcStopServer<CR>
+nnoremap <leader>wr :WdcRestartServer<CR>
+nnoremap <leader>wi :WdcServerInformation<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " clang_format "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -467,8 +473,28 @@ au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :pyf ~/dotfiles/clang-
 au FileType go nnoremap <buffer><Leader>cf :<C-u>!gofmt -w=true % <CR>
 "au FileType go vnoremap <buffer><Leader>cf :!gofmt % <CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               vim-jedi                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:jedi#auto_vim_configuration = 1
+let g:jedi#popup_select_first = 0
+let g:jedi#goto_command = "<leader>j"
+let g:jedi#completions_command = "<C-S-Space>"
+let g:jedi#call_signatures_command = "''"
+let g:jedi#goto_assignments_command = "''"
+let g:jedi#usages_command = "''"
+let g:jedi#rename_command = "''"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               nerdtree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+nnoremap <leader>n :NERDTreeToggle<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " shortcuts "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>l :GitGutterToggle<CR>
 nnoremap <leader>p :r !xclip -o<CR>
 nnoremap <leader>s :w !sudo tee %<CR>
 nnoremap <leader>t :!ctags -R --languages=C,C++ --fields=+l --exclude=.git --exclude=build --exclude=out --verbose<CR>
