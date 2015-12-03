@@ -32,6 +32,10 @@ Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'dleonard0/pony-vim-syntax'
 Plugin 'Chilledheart/vim-wdc'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'xolox/vim-session'
+Plugin 'xolox/vim-misc'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 " Plugin 'edkolev/tmuxline.vim'
 
 Plugin 'airblade/vim-gitgutter.git'
@@ -75,6 +79,8 @@ augroup filetype
   au! BufRead,BufNewFile .tmux.conf*,tmux.conf* set filetype=tmux
   au! BufRead,BufNewFile *.pony   set filetype=pony
   au! BufRead,BufNewFile *.fbs    set filetype=flatbuffers
+  au! BufRead,BufNewFile *.swift  set filetype=swift expandtab tabstop=2 shiftwidth=2 comments=s1:/*,mb:*,ex:*/,:///,://
+  au! BufRead,BufNewFile *.swift.gyb set filetype=swiftgyb expandtab tabstop=2 shiftwidth=2 comments=s1:/*,mb:*,ex:*/,:///,://
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -234,6 +240,7 @@ if has("gui_macvim")
   for i in range(1, 9)
     exec "nnoremap <D-".i."> ".i."gt"
   endfor
+  set transparency=25
 endif
 
 if has("unnamedplus")
@@ -386,14 +393,13 @@ au vimrc BufReadCmd *.epub call zip#Browse( expand( "<amatch>" ) )
 "                                tagbar                                   "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:tagbar_left = 1
+let g:tagbar_left = 0
+let g:tagbar_right = 0
 let g:tagbar_sort = 0
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 if has("gui_macvim")
   let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 endif
-
-nnoremap <F4> :TagbarToggle<cr><c-w>=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                session                                  "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -425,9 +431,15 @@ let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fugitive "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gl :Glog<CR>
+nnoremap <leader>gc :Gcommit<CR>
 "autocmd QuickFixCmdPost *grep* cwindow
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             CtrlP                                       "
@@ -452,6 +464,14 @@ if !has('python')
 else
   let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                       UltiSnips                                         "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger       = "<c-tab>"
+let g:UltiSnipsListSnippets        = "<c-s-tab>"
+let g:UltiSnipsJumpForwardTrigger  = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               wdc                                       "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -463,7 +483,6 @@ nnoremap <leader>ws :WdcStartServer<CR>
 nnoremap <leader>wd :WdcStopServer<CR>
 nnoremap <leader>wr :WdcRestartServer<CR>
 nnoremap <leader>wi :WdcServerInformation<CR>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " clang_format "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -490,21 +509,30 @@ let g:jedi#rename_command = "''"
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-nnoremap <leader>n :NERDTreeToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               airline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline_powerline_fonts = 0
+let g:airline_theme = 'tomorrow'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+
+call airline#parts#define_function('windycode', 'WdcStatuslineFlag')
+let g:airline_section_warning = airline#section#create(['windycode', 'syntastic', 'eclim', 'whitespace'])
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " shortcuts "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>t :TagbarToggle<cr><c-w>=
 nnoremap <leader>l :GitGutterToggle<CR>
-nnoremap <leader>p :r !xclip -o<CR>
+nnoremap <leader>p :r !tmux save-buffer -<CR>
 nnoremap <leader>s :w !sudo tee %<CR>
-nnoremap <leader>t :!ctags -R --languages=C,C++ --fields=+l --exclude=.git --exclude=build --exclude=out --verbose<CR>
-nnoremap <leader>T :!objctags -R --verbose<CR>
+nnoremap <leader>T :!ctags -R --languages=C,C++ --fields=+l --exclude=.git --exclude=build --exclude=out --verbose<CR>
 " Toggles '/' to mean eregex search or normal Vim search
 nnoremap <leader>/ :call eregex#toggle()<CR>
 
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 7
-let g:airline_powerline_fonts = 0
-let g:airline_theme = 'tomorrow'
-let g:airline#extensions#tabline#enabled = 1
 let g:eregex_default_enable = 0
