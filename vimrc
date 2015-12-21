@@ -36,6 +36,7 @@ Plugin 'xolox/vim-session'
 Plugin 'xolox/vim-misc'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'Shougo/neocomplcache.vim'
 " Plugin 'edkolev/tmuxline.vim'
 
 Plugin 'airblade/vim-gitgutter.git'
@@ -479,6 +480,7 @@ au FileType c,cpp,objc,objcpp nnoremap <leader>y :WdcForceCompile<CR>
 au FileType c,cpp,objc,objcpp nnoremap <leader>j :WdcGotoDefinition<CR>
 au FileType c,cpp,objc,objcpp nnoremap <leader>d :WdcShowDetailedDiagnostic<CR>
 au FileType c,cpp,objc,objcpp nnoremap <leader>c :WdcShowCursorDetail<CR>
+let g:windycode#popup_auto = 0
 nnoremap <leader>ws :WdcStartServer<CR>
 nnoremap <leader>wd :WdcStopServer<CR>
 nnoremap <leader>wr :WdcRestartServer<CR>
@@ -502,6 +504,20 @@ let g:jedi#call_signatures_command = "''"
 let g:jedi#goto_assignments_command = "''"
 let g:jedi#usages_command = "''"
 let g:jedi#rename_command = "''"
+let g:jedi#popup_on_dot = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               neocomplecache                            "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:neocomplcache_enable_at_startup = 1
+if !exists('g:neocomplcache_omni_functions')
+    let g:neocomplcache_omni_functions = {}
+endif
+let g:neocomplcache_omni_functions['c'] = 'windycode#CodeCompleteAt'
+let g:neocomplcache_omni_functions['cpp'] = 'windycode#CodeCompleteAt'
+let g:neocomplcache_omni_functions['objc'] = 'windycode#CodeCompleteAt'
+let g:neocomplcache_omni_functions['objcpp'] = 'windycode#CodeCompleteAt'
+let g:neocomplcache_omni_functions['python'] = 'jedi#completions'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               nerdtree
