@@ -535,7 +535,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 
-call airline#parts#define_function('windycode', 'WdcStatuslineFlag')
+if exists('g:wdcd_executable')
+    call airline#parts#define_function('windycode', 'WdcStatuslineFlag')
+endif
 let g:airline_section_warning = airline#section#create(['windycode', 'syntastic', 'eclim', 'whitespace'])
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " shortcuts "
