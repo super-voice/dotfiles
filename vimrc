@@ -577,6 +577,7 @@ if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
 let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+autocmd FileType python setlocal omnifunc=jedi#completions
 
 " setup clangd for neocomplete usage
 if !g:clangd#completions_enabled
@@ -584,7 +585,6 @@ if !g:clangd#completions_enabled
   let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 
   autocmd FileType c,cpp,objc,objcpp setlocal omnifunc=clangd#OmniCompleteAt
-  autocmd FileType python setlocal omnifunc=jedi#completions
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
