@@ -1,15 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
-
-# get the dir of the current script
-SCRITPT_PWD="$(dirname "${BASH_SOURCE[0]}")"
-#Platform
-PLATFORM=$(uname -s)
-
-pushd "$SCRITPT_PWD"
-
-if [ "$(which gsettings)" ]; then
+if [ -z "$(which gsettings)" ]; then
   echo "gsettings is missing, forget to install package libglib2.0-bin?"
   exit -1
 fi
