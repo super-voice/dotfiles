@@ -16,33 +16,34 @@ Plugin 'majutsushi/tagbar'
 Plugin 'godlygeek/tabular'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/syntastic'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'helino/vim-json'
+Plugin 'elzr/vim-json'
 Plugin 'othree/eregex.vim'
 Plugin 'nanotech/jellybeans.vim'
-Plugin 'rizzatti/dash.vim'
+" Plugin 'rizzatti/dash.vim'
 Plugin 'jimenezrick/vimerl'
-Plugin 'wting/rust.vim'
 Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'dleonard0/pony-vim-syntax'
-Plugin 'Chilledheart/vim-wdc'
 Plugin 'davidhalter/jedi-vim'
-Plugin 'xolox/vim-session'
 Plugin 'xolox/vim-misc'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'Shougo/neocomplcache.vim'
-" Plugin 'edkolev/tmuxline.vim'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'brandonbloom/csearch.vim'
+Plugin 'rust-lang/rust.vim'
+Plugin 'fatih/vim-go'
 
 Plugin 'airblade/vim-gitgutter.git'
 " Plugin 'Xuyuanp/nerdtree-git-plugin'
 " vim-scripts repos
 Plugin 'L9'
+Plugin 'Chilledheart/vim-clangd'
 " non github repos
 " git repos on your local machine (ie. when working on your own plugin)
 " ...
@@ -92,7 +93,6 @@ augroup END
 
 " DISPLAY SETTINGS
 colorscheme jellybeans    " sets the colorscheme
-" set background=dark     " enable for dark terminals
 set scrolloff=2         " 2 lines above/below cursor when scrolling
 set showmatch           " show matching bracket (briefly jump)
 set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
@@ -138,6 +138,7 @@ set shiftwidth=2        " spaces for autoindents
 set softtabstop=2
 set shiftround          " makes indenting a multiple of shiftwidth
 set expandtab           " turn a tab into spaces
+" vim-airline doesn't appear until I create a new split
 set laststatus=2        " the statusline is now always shown
 set noshowmode          " don't show the mode ("-- INSERT --") at the bottom
 
@@ -199,13 +200,15 @@ autocmd vimrc GUIEnter * set visualbell t_vb=
 if &t_Co > 2 || has("gui_running")
   syntax on
   set antialias
+  " we use lazy redraw
+  set lazyredraw
 endif
 
 " none of these should be word dividers, so make them not be
 set iskeyword+=_,$,@,%,#
 
 " Number of screen lines to use for the command-line
-" set cmdheight=2
+set cmdheight=2
 
 " allow backspace and cursor keys to cross line boundaries
 set whichwrap+=<,>,h,l
@@ -216,7 +219,7 @@ set gdefault            " this makes search/replace global by default
 " enforces a specified line-length and auto inserts hard line breaks when we
 " reach the limit; in Normal mode, you can reformat the current paragraph with
 " gqap.
-set textwidth=80
+set textwidth=120
 
 " this makes the color after the textwidth column highlighted
 set colorcolumn=+1
@@ -272,9 +275,9 @@ autocmd vimrc FileType javascript
       \ set softtabstop=2
 
 autocmd vimrc FileType python
-      \ set tabstop=2 |
-      \ set shiftwidth=2 |
-      \ set softtabstop=2
+      \ set tabstop=4 |
+      \ set shiftwidth=4 |
+      \ set softtabstop=4
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           More involved tweaks                          "
@@ -313,9 +316,10 @@ if has("autocmd")
 endif
 
 " Sets a font for the GUI
-if has("gui_gtk2")
-  " My Mac has running gnome3 with scale factor 2.0
-  " set font to the same as kmscon setup is good enough
+if has("gui_gtk3")
+  " fedora 25 has it
+  set guifont=Consolas\ 11
+elseif has("gui_gtk2")
   set guifont=Consolas\ Regular\ 10
 elseif has("gui_macvim")
   " My Mac has a fairly high DPI so the font needs to be bigger
@@ -397,20 +401,38 @@ au vimrc BufReadCmd *.epub call zip#Browse( expand( "<amatch>" ) )
 let g:tagbar_left = 0
 let g:tagbar_right = 0
 let g:tagbar_sort = 0
-let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+let g:tagbar_ctags_bin = '/usr/bin/ctags'
 if has("gui_macvim")
-  let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+  let g:tagbar_ctags_bin = '/usr/bin/ctags'
 endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                session                                  "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" you also need to run :SaveSession once to create the default.vim session that
-" will then be autoloaded/saved from then on
 
-let g:session_autoload        = 'yes'
-let g:session_autosave        = 'yes'
-let g:session_default_to_last = 'yes'
-let g:session_directory       = '~/tmp/vim/sessions'
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                tabular                                  "
@@ -460,7 +482,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                       PyMatcher for CtrlP                               "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if !has('python')
+if !has('python') && !has('python3')
   echo 'In order to use pymatcher plugin, you need +python compiled vim'
 else
   let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
@@ -473,26 +495,62 @@ let g:UltiSnipsExpandTrigger       = "<c-tab>"
 let g:UltiSnipsListSnippets        = "<c-s-tab>"
 let g:UltiSnipsJumpForwardTrigger  = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                               wdc                                       "
+"                               gerrit                                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au FileType c,cpp,objc,objcpp nnoremap <leader>y :WdcForceCompile<CR>
-au FileType c,cpp,objc,objcpp nnoremap <leader>j :WdcGotoDefinition<CR>
-au FileType c,cpp,objc,objcpp nnoremap <leader>d :WdcShowDetailedDiagnostic<CR>
-au FileType c,cpp,objc,objcpp nnoremap <leader>c :WdcShowCursorDetail<CR>
-let g:windycode#popup_auto = 0
-nnoremap <leader>ws :WdcStartServer<CR>
-nnoremap <leader>wd :WdcStopServer<CR>
-nnoremap <leader>wr :WdcRestartServer<CR>
-nnoremap <leader>wi :WdcServerInformation<CR>
+" Enable spell checking, which is not on by default for commit messages.
+au FileType gitcommit setlocal spell
+" Reset textwidth if you've previously overridden it.
+au FileType gitcommit setlocal textwidth=72
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               clangd
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au FileType c,cpp,objc,objcpp nnoremap <leader>j :ClangdGotoDefinition<CR>
+au FileType c,cpp,objc,objcpp nnoremap <leader>d :ClangdShowDetailedDiagnostic<CR>
+au FileType c,cpp,objc,objcpp nnoremap <leader>c :ClangdShowCursorDetail<CR>
+
+let g:clangd#completions_enabled = 1
+let g:clangd#log_level = 'info'
+"let g:clangd#clangd_executable = '~/build-llvm/bin/clangd'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " clang_format "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:clang_format_fallback_style = 'llvm'
-au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :<C-u>pyf ~/dotfiles/clang-format.py<CR>
-au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :pyf ~/dotfiles/clang-format.py<CR>
+
+if has('python3')
+   au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :<C-u>py3f ~/dotfiles/clang-format.py<CR>
+   au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :py3f ~/dotfiles/clang-format.py<CR>
+elseif has('python')
+   au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :<C-u>pyf ~/dotfiles/clang-format.py<CR>
+   au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :pyf ~/dotfiles/clang-format.py<CR>
+endif
 au FileType go nnoremap <buffer><Leader>cf :<C-u>!gofmt -w=true % <CR>
 "au FileType go vnoremap <buffer><Leader>cf :!gofmt % <CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" yapf "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! YAPF() range
+  " Determine range to format.
+  let l:line_ranges = a:firstline . '-' . a:lastline
+  let l:cmd = 'yapf --lines=' . l:line_ranges
+
+  " Call YAPF with the current buffer
+  let l:formatted_text = system(l:cmd, join(getline(1, '$'), "\n") . "\n")
+
+  " Update the buffer.
+  execute '1,' . string(line('$')) . 'delete'
+  call setline(1, split(l:formatted_text, "\n"))
+
+  " Reset cursor to first line of the formatted range.
+  call cursor(a:firstline, 1)
+endfunction
+
+command! -range=% YAPF <line1>,<line2>call YAPF()
+au FileType python nnoremap <buffer><Leader>cf :call <C-u>YAPF()<CR>
+au FileType python vnoremap <buffer><Leader>cf :call YAPF()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               vim-jedi                                  "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -505,19 +563,29 @@ let g:jedi#goto_assignments_command = "''"
 let g:jedi#usages_command = "''"
 let g:jedi#rename_command = "''"
 let g:jedi#popup_on_dot = 0
+let g:jedi#completions_enabled = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                               neocomplecache                            "
+"                               neocomplete                               "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:neocomplcache_enable_at_startup = 1
-if !exists('g:neocomplcache_omni_functions')
-    let g:neocomplcache_omni_functions = {}
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_auto_select = 1
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
 endif
-let g:neocomplcache_omni_functions['c'] = 'windycode#CodeCompleteAt'
-let g:neocomplcache_omni_functions['cpp'] = 'windycode#CodeCompleteAt'
-let g:neocomplcache_omni_functions['objc'] = 'windycode#CodeCompleteAt'
-let g:neocomplcache_omni_functions['objcpp'] = 'windycode#CodeCompleteAt'
-let g:neocomplcache_omni_functions['python'] = 'jedi#completions'
+let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+
+" setup clangd for neocomplete usage
+if !g:clangd#completions_enabled
+  let g:neocomplete#force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+  let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+
+  autocmd FileType c,cpp,objc,objcpp setlocal omnifunc=clangd#OmniCompleteAt
+  autocmd FileType python setlocal omnifunc=jedi#completions
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               nerdtree
@@ -534,11 +602,8 @@ let g:airline_theme = 'tomorrow'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
-
-if exists('g:wdcd_executable')
-    call airline#parts#define_function('windycode', 'WdcStatuslineFlag')
-endif
-let g:airline_section_warning = airline#section#create(['windycode', 'syntastic', 'eclim', 'whitespace'])
+" autocmd VimEnter * call airline#parts#define_function('clangd', 'ClangdStatuslineFlag')
+" let g:airline_section_warning = airline#section#create(['clangd', 'syntastic', 'eclim', 'whitespace'])
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " shortcuts "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -547,7 +612,7 @@ nnoremap <leader>t :TagbarToggle<cr><c-w>=
 nnoremap <leader>l :GitGutterToggle<CR>
 nnoremap <leader>p :r !tmux save-buffer -<CR>
 nnoremap <leader>s :w !sudo tee %<CR>
-nnoremap <leader>T :!ctags -R --languages=C,C++ --fields=+l --exclude=.git --exclude=build --exclude=out --verbose<CR>
+nnoremap <leader>T :!ctags -R --languages=C,C++,Go,protobuf --fields=+l --exclude=.git --exclude=build --exclude=out --verbose<CR>
 " Toggles '/' to mean eregex search or normal Vim search
 nnoremap <leader>/ :call eregex#toggle()<CR>
 

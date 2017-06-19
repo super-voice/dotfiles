@@ -4,8 +4,6 @@ set -e
 
 # get the dir of the current script
 SCRITPT_PWD="$(dirname "${BASH_SOURCE[0]}")"
-#Platform
-PLATFORM=$(uname -s)
 
 pushd "$SCRITPT_PWD"
 
@@ -31,9 +29,9 @@ then
   ln -sv $PWD/tmux.conf ~/.tmux.conf
 fi
 
-if [[ ! -a ~/.gdbrc ]]
+if [[ ! -a ~/.gdbinit ]]
 then
-  ln -sv $PWD/gdbrc ~/.gdbrc
+  ln -sv $PWD/gdbinit ~/.gdbinit
 fi
 
 if [[ ! -a ~/.cgdbrc ]]
@@ -55,10 +53,42 @@ if [[ ! -a ~/.vim/ftdetect ]]; then
   ln -sv $PWD/ftdetect ~/.vim/ftdetect
 fi
 
+if [[ ! -a ~/.ctags ]]; then
+  ln -sv $PWD/ctags ~/.ctags
+fi
+
+if [[ ! -a ~/.Xresources ]]; then
+  ln -sv $PWD/Xresources ~/.Xresources
+fi
+
+# Setup Git
 . $PWD/gitconfig_setup.sh
+
+# Platform-specified
+PLATFORM=$(uname -s)
 
 if [ "$PLATFORM" = "Darwin" ]; then
   . $PWD/osx_defaults_setup.sh
+elif [ "$PLATFORM" = "Linux" ]; then
+  . $PWD/gnome_defaults_setup.sh
 fi
+
+# PostInstall
+# install vim plugin manager
+if [ ! -d ~/.vim/bundle/vundle ]; then
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/vundle
+fi
+
+# install vim plugins
+vim +PluginInstall +qall
+
+# install vimproc
+pushd ~/.vim/bundle/vimproc.vim/
+make clean
+make
+popd
+
+# test psutil
+python -c "import psutil" || echo "failed to find psutil"
 
 popd

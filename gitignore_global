@@ -177,6 +177,8 @@ compile_commands.json
 #ninja stuff
 build.ninja
 rules.ninja
+.ninja_deps
+.ninja_log
 
 #xcode stuff
 *.pbxuser
@@ -190,3 +192,12 @@ rules.ninja
 *.xccheckout
 *.ycm_root
 *.build
+
+# gconv related
+*.gcda
+*.gcno
+
+# autoconf related
+autom4te.cache
+compile
+test-driver

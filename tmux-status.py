@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # 2885/7987MB 51.2% 2.11% 2.35% 2.44% <uptime> <current date>
-import psutil,time,sys,os,re
+import time,sys,os,re
 import subprocess
 from datetime import datetime
 from sys import stdout
@@ -55,10 +55,12 @@ if __name__ == '__main__':
     if len(sys.argv) != 2:
         pass#nothing
     elif sys.argv[1] == 'vm':
+        import psutil
         # print memory usage
         vm = psutil.virtual_memory()
         stdout.write('%.1f/%.1fM' % (vm.active/1024/1024, vm.total/1024/1024))
     elif sys.argv[1] == 'cpu':
+        import psutil
         # print cpu usage
         cpu_usage = psutil.cpu_percent(interval=0.10, percpu=False)
         cpu_count = psutil.cpu_count();
@@ -66,6 +68,7 @@ if __name__ == '__main__':
     elif sys.argv[1] == 'battery':
         stdout.write(get_battery_capacity())
     elif sys.argv[1] == 'uptime':
+        import psutil
         # print uptime
         uptime = datetime.fromtimestamp(time.time()) - datetime.fromtimestamp(psutil.boot_time())
         stdout.write(humanize_timedelta(uptime))

@@ -1,64 +1,58 @@
-# Editor-related
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# Editors
 set -o vi
-export VISUAL=/usr/local/bin/vim
-export EDITOR=/usr/local/bin/vim
-
-# Locale-related
-export LANG=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-# Aliases-related
-export LESS=' -R '
-alias ls='gls --color=auto'
-alias ll='ls -h1'
-
-# Pkg manager-related
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
-export PKG_CONFIG_PATH=$HOME/lib/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/pkgconfig
-export ACLOCAL_PATH=$HOME/share/aclocal:/usr/local/share/aclocal
-export HOMEBREW_BUILD_FROM_SOURCE=YES
+export VISUAL=/usr/bin/vim
+export EDITOR=/usr/bin/vim
+export PAGER=/usr/bin/less
 
 # Compiler-related
-# Toolchain-related
-APPLE_TOOLCHAIN_DIR="/Library/Developer/CommandLineTools/usr/bin"
-MACPORTS_TOOLCHAIN_DIR="/usr/local/bin"
-CUSTOM_TOOLCHAIN_DIR="$HOME/build-rel/bin"
-XCODE_TOOLS_DIR="/Applications/Xcode.app/Contents/SharedFrameworks/DTDeviceKitBase.framework/Versions/A/Resources"
-export CC=clang
-export CXX=clang++
-export PATH="$CUSTOM_TOOLCHAIN_DIR:$HOME/build-fallback/bin:$MACPORTS_TOOLCHAIN_DIR:$APPLE_TOOLCHAIN_DIR:$PATH:$XCODE_TOOLS_DIR"
 export ARCHFLAGS="-Wno-error=unused-command-line-argument"
-
-# Sanitizer-related
-#export ASAN_OPTIONS="verbosity=3:malloc_context_size=30:log_path=$HOME/.asan/asan:color=never"
-export ASAN_OPTIONS="verbosity=0:malloc_context_size=30:abort_on_error=1:color=always"
-export GTEST_BREAK_ON_FAILURE=1
-
-# Python-related
-export PYTHONPATH="$HOME/Library/Python/2.7/lib/python2.7/site-packages:/usr/local/lib/python2.7/site-packages"
-export PATH="$HOME/Library/Python/2.7/bin:$PATH"
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
 
 # Ruby-related
-export GEM_HOME=$HOME/.gem
+export GEM_HOME=$HOME/.gems
 export PATH="$GEM_HOME/bin:$PATH"
 
 # Go-related
-export GOPATH=$HOME/.go:/usr/local/go
-export PATH="$GOPATH/bin:$PATH"
+export GOPATH=$HOME/.go
+export GOBIN=$GOPATH/bin
+export PATH="$GOBIN:$PATH"
+
+# Haskell-related
+CABAL_BASE=$HOME/.cabal/bin
+export PATH="$CABAL_BASE:$PATH"
+
+# Sanitizer-related
+export ASAN_OPTIONS="disable_core=0:detect_leaks=1:abort_on_error=1:color=always:malloc_context_size=100:max_leaks=100:report_objects=1"
+export TSAN_OPTIONS="disable_core=0:abort_on_error=1:color=always"
+export MSAN_OPTIONS="disable_core=0:abort_on_error=1:color=always"
+export UBSAN_OPTIONS="disable_core=0:abort_on_error=1:color=always"
+
+# Java-related
+unset JAVA_HOME
+export JAVA_OPTS="-Dfile.encoding=UTF-8 -XX:MaxPermSize=256m"
+#export _JAVA_OPTIONS="-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080"
+#export PATH="$JAVA_HOME/bin:$PATH"
 
 # Other
-export PATH="$HOME/arcanist/bin:$PATH"
+export PATH="$HOME/arcanist/bin:$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/depot_tools"
 export LESS="-R"
 
-# Completion
-if [ -f /usr/local/etc/bash_completion ]; then
-  . /usr/local/etc/bash_completion
-fi
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
 
+# User specific aliases and functions
 # When the shell exits, append to the history file instead of overwriting it
 shopt -s histappend
+export HISTSIZE=1000000
+export HISTFILESIZE=1000000
 
 # Write bash history after each command
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
