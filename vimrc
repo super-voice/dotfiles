@@ -38,7 +38,7 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'brandonbloom/csearch.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'fatih/vim-go'
-
+Plugin 'pboettch/vim-cmake-syntax'
 Plugin 'airblade/vim-gitgutter.git'
 " Plugin 'Xuyuanp/nerdtree-git-plugin'
 " vim-scripts repos
