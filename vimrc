@@ -3,12 +3,12 @@ set shell=bash
 scriptencoding utf-8
 filetype off  " required!
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin() "required
 " let Vundle manage Vundle
 " required!
 "
 " original repos on github
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/vundle'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/nerdtree'
@@ -46,6 +46,8 @@ Plugin 'L9'
 Plugin 'Chilledheart/vim-clangd'
 " non github repos
 " git repos on your local machine (ie. when working on your own plugin)
+
+call vundle#end() "required
 " ...
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           pre-filetype tweaks                           "
@@ -68,7 +70,7 @@ augroup END
 
 " Enable detection, plugins and indenting in one step
 " This needs to come AFTER the Plugin commands!
-filetype plugin indent on
+filetype plugin indent on "required
 
 augroup filetype
   au! BufRead,BufNewFile *.ll     set filetype=llvm
