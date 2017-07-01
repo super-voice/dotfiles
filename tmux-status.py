@@ -72,3 +72,12 @@ if __name__ == '__main__':
         # print uptime
         uptime = datetime.fromtimestamp(time.time()) - datetime.fromtimestamp(psutil.boot_time())
         stdout.write(humanize_timedelta(uptime))
+    elif sys.argv[1] == 'uname':
+        from platform import uname
+        sysname, node, release, version, machine, processor = uname()
+        if sysname.startswith('MINGW'):
+            stdout.write(sysname)
+        else:
+            stdout.write('%s-%s' %(sysname, release))
+    else:
+        stdout.write(sys.argv[1])
