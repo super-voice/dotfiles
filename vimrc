@@ -411,8 +411,13 @@ let g:tagbar_left = 0
 let g:tagbar_right = 0
 let g:tagbar_sort = 0
 let g:tagbar_ctags_bin = '/usr/bin/ctags'
+" for mac, the default ctags doesn't work
 if has("gui_macvim")
-  let g:tagbar_ctags_bin = '/usr/bin/ctags'
+  let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+endif
+" fallback to path find
+if !executable(g:tagbar_ctags_bin)
+  let g:tagbar_ctags_bin = 'ctags'
 endif
 
 let g:tagbar_type_go = {
