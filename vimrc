@@ -36,8 +36,8 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'xolox/vim-misc'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-" lua support on windows is bad
-if !has('win32') && !has('win32unix')
+" lua support on windows is optional
+if has('lua')
   Plugin 'Shougo/neocomplete.vim'
 endif
 Plugin 'brandonbloom/csearch.vim'
