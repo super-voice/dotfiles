@@ -1,5 +1,7 @@
 set nocompatible               " be iMproved
-set shell=bash
+if has("unix")
+  set shell=bash
+endif
 scriptencoding utf-8
 filetype off  " required!
 set rtp+=~/.vim/bundle/vundle/
@@ -34,7 +36,10 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'xolox/vim-misc'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'Shougo/neocomplete.vim'
+" lua support on windows is bad
+if !has('win32') && !has('win32unix')
+  Plugin 'Shougo/neocomplete.vim'
+endif
 Plugin 'brandonbloom/csearch.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'fatih/vim-go'
@@ -43,7 +48,9 @@ Plugin 'airblade/vim-gitgutter.git'
 " Plugin 'Xuyuanp/nerdtree-git-plugin'
 " vim-scripts repos
 Plugin 'L9'
-Plugin 'Chilledheart/vim-clangd'
+if !has('win32') && !has('win32unix')
+  Plugin 'Chilledheart/vim-clangd'
+endif
 " non github repos
 " git repos on your local machine (ie. when working on your own plugin)
 
@@ -327,7 +334,7 @@ elseif has("gui_macvim")
   " My Mac has a fairly high DPI so the font needs to be bigger
   set guifont=Monaco:h12
 elseif has("gui_win32")
-  set guifont=Consolas:h17
+  set guifont=Consolas:h11
 end
 
 " Sometimes, $MYVIMRC does not get set even though the vimrc is sourced
@@ -451,8 +458,13 @@ vnoremap <Leader>a, :Tabularize /,/l0r1<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              syntastic                                  "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
+if !has('win32') && !has('win32unix')
+  let g:syntastic_error_symbol = '✗'
+  let g:syntastic_warning_symbol = '⚠'
+else
+  let g:syntastic_error_symbol = 'X'
+  let g:syntastic_warning_symbol = 'x'
+endif
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
@@ -578,11 +590,13 @@ let g:neocomplete#enable_auto_select = 1
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
-let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-autocmd FileType python setlocal omnifunc=jedi#completions
+if exists('g:jedi#completions_enabled') && !g:jedi#completions_enabled
+  let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+  autocmd FileType python setlocal omnifunc=jedi#completions
+endif
 
 " setup clangd for neocomplete usage
-if !g:clangd#completions_enabled
+if exists('g:clangd#completions_enabled') && !g:clangd#completions_enabled
   let g:neocomplete#force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
   let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 
