@@ -4,13 +4,13 @@ if has("unix")
 endif
 scriptencoding utf-8
 filetype off  " required!
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/vundle.vim/
 call vundle#begin() "required
 " let Vundle manage Vundle
 " required!
 "
 " original repos on github
-Plugin 'VundleVim/vundle'
+Plugin 'VundleVim/vundle.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/nerdtree'

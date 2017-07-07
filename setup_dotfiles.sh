@@ -75,8 +75,8 @@ fi
 
 # PostInstall
 # install vim plugin manager
-if [ ! -d ~/.vim/bundle/vundle ]; then
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/vundle
+if [ ! -d ~/.vim/bundle/vundle.vim ]; then
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/vundle.vim
 fi
 
 # install vim plugins
