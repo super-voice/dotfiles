@@ -538,7 +538,7 @@ let g:clangd#log_level = 'info'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:clang_format_fallback_style = 'llvm'
 
-if !has('win32') and !has('win32unix')
+if !has('win32') && !has('win32unix')
  au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :ClangdFormat<CR>
  au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :<C-u>ClangdFormat<CR>
 elseif has('python3')
