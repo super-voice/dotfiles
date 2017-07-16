@@ -538,12 +538,15 @@ let g:clangd#log_level = 'info'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:clang_format_fallback_style = 'llvm'
 
-if has('python3')
-   au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :<C-u>py3f ~/dotfiles/clang-format.py<CR>
-   au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :py3f ~/dotfiles/clang-format.py<CR>
+if !has('win32') and !has('win32unix')
+ au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :ClangdFormat<CR>
+ au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :<C-u>ClangdFormat<CR>
+elseif has('python3')
+ au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :<C-u>py3f ~/dotfiles/clang-format.py<CR>
+ au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :py3f ~/dotfiles/clang-format.py<CR>
 elseif has('python')
-   au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :<C-u>pyf ~/dotfiles/clang-format.py<CR>
-   au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :pyf ~/dotfiles/clang-format.py<CR>
+ au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :<C-u>pyf ~/dotfiles/clang-format.py<CR>
+ au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :pyf ~/dotfiles/clang-format.py<CR>
 endif
 au FileType go nnoremap <buffer><Leader>cf :<C-u>!gofmt -w=true % <CR>
 "au FileType go vnoremap <buffer><Leader>cf :!gofmt % <CR>
