@@ -41,12 +41,18 @@ export JAVA_OPTS="-Dfile.encoding=UTF-8 -XX:MaxPermSize=256m"
 #export PATH="$JAVA_HOME/bin:$PATH"
 
 # Other
-export PATH="$HOME/arcanist/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/arcanist/bin:$HOME/.local/bin:$HOME/bin:$PATH"
 export PATH="$PATH:$HOME/depot_tools"
 export LESS="-R"
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
+
+# Set up Python to path
+[ -d $HOME/Library/Python/2.7 ] && export PATH="$HOME/Library/Python/2.7/bin:$PATH"
+
+# Set bash completion
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 # User specific aliases and functions
 # When the shell exits, append to the history file instead of overwriting it
