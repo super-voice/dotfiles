@@ -253,7 +253,7 @@ if has("gui_macvim")
   for i in range(1, 9)
     exec "nnoremap <D-".i."> ".i."gt"
   endfor
-  set transparency=25
+  set transparency=10
 endif
 
 if has("unnamedplus")

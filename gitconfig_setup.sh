@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 
-git config --global user.name "Chilledheart"
-git config --global user.email "rwindz0@gmail.com"
-git config --global github.user Chilledheart
+if [[ ! -f authors ]]; then
+  echo "Please create 'authors' file before running this script"
+  exit -1
+fi
+
+. authors
+
+git config --global user.name "$USER_NAME"
+git config --global user.email "$USER_EMAIL"
+git config --global github.user "$GITHUB_NAME"
 
 git config --global alias.st status
 git config --global alias.co checkout
