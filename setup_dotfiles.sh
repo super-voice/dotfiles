@@ -62,13 +62,18 @@ fi
 vim +PluginInstall +qall
 
 # install vimproc
-echo "Build vimproc module"
+echo "Build vimproc module (optional)"
 pushd ~/.vim/bundle/vimproc.vim/
-make clean
+[ ! -z "$(which cc)" ] && make
+popd
+
+echo "Build clangd module (optional)"
+pushd ~/.vim/bundle/vim-clangd/
 make
 popd
 
 # psutil module check
-python -c "import psutil" || echo "failed to find psutil"
+echo "Looking for psutil module (optional)"
+python -c "import psutil" || :
 
 echo "dotfiles is set up"

@@ -643,3 +643,9 @@ nnoremap <leader>/ :call eregex#toggle()<CR>
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 7
 let g:eregex_default_enable = 0
+
+function! LinuxFormat()
+  set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
+  autocmd FileType c,cpp,objc,objcpp setlocal tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
+endfunction
+nnoremap <leader>L :call LinuxFormat()<CR>
